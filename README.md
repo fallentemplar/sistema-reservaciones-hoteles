@@ -28,9 +28,18 @@ Proyecto SOA para simular un sistema de reservaciones de hoteles, con interacci�
 ## Validaciones
 
 ### Entradas
+
+* 
+### Procesos
+
 * 
 ### Salidas
 
+* 
+
+---
+
+## Flujo de proceso
 
 1. (Verifica disponibilidad) Se recibe solicitud de reservación
 2. (Verifica disponibilidad) Se genera ID de reservación
