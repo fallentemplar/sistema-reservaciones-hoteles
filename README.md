@@ -13,14 +13,9 @@ Proyecto SOA para simular un sistema de reservaciones de hoteles, con interacci√
 * FechaReservacionSolicitada
 * IDHotel
 
-### Procesos
-
-* List<Reservaciones>
-* IDReservacion (IDUsuario+IDHotel+Unix Timestamp)
-
 ### Salidas
 
-* s
+* 
 
 ---
 
