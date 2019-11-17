@@ -32,7 +32,6 @@ import edu.itq.soa.validarhab.ResponseValidar;
                  public ResponseValidar validarHabitacionOperation(RequestValidar request) {
                      ResponseValidar response = new ResponseValidar();
                      UsuarioDto usuarioDto = new UsuarioDto();
-                     response.setCodigoRespuesta(200);
                      response.setIdReservacion(request.getIdReservacion());
                      
                      try {
@@ -40,8 +39,15 @@ import edu.itq.soa.validarhab.ResponseValidar;
                          usuarioDto.setFechaReservacion(request.getFechaReservacion());
                      List<UsuarioDto> list = usuarioDao.consultaHabitacion(usuarioDto);
                      for (UsuarioDto usuarioDto3 : list) {
-                        response.setIdHabitacion(usuarioDto3.getIdHabitacion());
-                        response.setCosto(usuarioDto3.getCostoHabitacion());
+                         System.out.println(usuarioDto3.getIdHabitacion());
+                         if (usuarioDto3.getIdHabitacion() != null ) {
+                             response.setCodigoRespuesta(200);
+                             response.setIdHabitacion(usuarioDto3.getIdHabitacion());
+                             response.setCosto(usuarioDto3.getCostoHabitacion());
+                         }else {
+                             response.setCodigoRespuesta(204);
+                             response.setIdHabitacion("null"); 
+                         }
                         }
                      } catch (Exception e) {
                          System.out.println("Error en transacción: " + e.getMessage());

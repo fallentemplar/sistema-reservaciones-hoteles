@@ -67,7 +67,14 @@ public class UsuarioDao {
                         + " INNER JOIN reservaciones ON habitaciones.idHotel = reservaciones.idHotel"
                         + " WHERE habitaciones.idHotel = " + usuarioDto.getIdHotel() 
                         + " AND habitaciones.idhabitacion NOT IN (SELECT idHabitacion FROM reservaciones"
-                        + " WHERE FechaReservacion = '" + usuarioDto.getFechaReservacion() + "' AND idHotel = " + usuarioDto.getIdHotel() + ")", 
+                        + " WHERE FechaReservacion = '" + usuarioDto.getFechaReservacion() + "' AND idHotel = " + usuarioDto.getIdHotel() + ")"
+                        + " UNION SELECT NULL, NULL FROM DUAL WHERE NOT EXISTS ("
+                        + "SELECT  habitaciones.idHabitacion, habitaciones.CostoHabitacion "
+                        + "FROM habitaciones "
+                        + "INNER JOIN reservaciones ON habitaciones.idHotel = reservaciones.idHotel "
+                        + "WHERE habitaciones.idHotel = " + usuarioDto.getIdHotel() 
+                        + " AND habitaciones.idhabitacion NOT IN (SELECT idHabitacion FROM reservaciones"
+                        + " WHERE FechaReservacion = '" + usuarioDto.getFechaReservacion() + "' AND idHotel = " + usuarioDto.getIdHotel() + "))" , 
                         new BeanPropertyRowMapper(UsuarioDto.class));
         return resultList;
     }
