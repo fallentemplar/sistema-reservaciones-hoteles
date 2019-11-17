@@ -4,44 +4,98 @@ package com.akk.validadorConexiones.dto;
  * @author tlopez
  *
  */
-public class UsuarioDto {
-    private Integer id;
-    private String login;
-    private String password;
+public class ReservacionDto {
+    
+    private Integer IDReservacion;
+    private Integer IDUsuario;
+    private Integer IDHotel;
+    private Integer IDHabitacion;
+    private String FECHA;
+    private Double MONTO;
+    private String Estatus;
     /**
-     * @return the id
+     * @return the iDReservacion
      */
-    public Integer getId() {
-        return id;
+    public Integer getIDReservacion() {
+        return IDReservacion;
     }
     /**
-     * @param id the id to set
+     * @param iDReservacion the iDReservacion to set
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIDReservacion(Integer iDReservacion) {
+        IDReservacion = iDReservacion;
     }
     /**
-     * @return the login
+     * @return the iDUsuario
      */
-    public String getLogin() {
-        return login;
+    public Integer getIDUsuario() {
+        return IDUsuario;
     }
     /**
-     * @param login the login to set
+     * @param iDUsuario the iDUsuario to set
      */
-    public void setLogin(String login) {
-        this.login = login;
+    public void setIDUsuario(Integer iDUsuario) {
+        IDUsuario = iDUsuario;
     }
     /**
-     * @return the password
+     * @return the iDHotel
      */
-    public String getPassword() {
-        return password;
+    public Integer getIDHotel() {
+        return IDHotel;
     }
     /**
-     * @param password the password to set
+     * @param iDHotel the iDHotel to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setIDHotel(Integer iDHotel) {
+        IDHotel = iDHotel;
     }
+    /**
+     * @return the iDHabitacion
+     */
+    public Integer getIDHabitacion() {
+        return IDHabitacion;
+    }
+    /**
+     * @param iDHabitacion the iDHabitacion to set
+     */
+    public void setIDHabitacion(Integer iDHabitacion) {
+        IDHabitacion = iDHabitacion;
+    }
+    /**
+     * @return the fECHA
+     */
+    public String getFECHA() {
+        return FECHA;
+    }
+    /**
+     * @param fECHA the fECHA to set
+     */
+    public void setFECHA(String fECHA) {
+        FECHA = fECHA;
+    }
+    /**
+     * @return the mONTO
+     */
+    public Double getMONTO() {
+        return MONTO;
+    }
+    /**
+     * @param mONTO the mONTO to set
+     */
+    public void setMONTO(Double mONTO) {
+        MONTO = mONTO;
+    }
+    /**
+     * @return the estatus
+     */
+    public String getEstatus() {
+        return Estatus;
+    }
+    /**
+     * @param estatus the estatus to set
+     */
+    public void setEstatus(String estatus) {
+        Estatus = estatus;
+    }
+    
 }

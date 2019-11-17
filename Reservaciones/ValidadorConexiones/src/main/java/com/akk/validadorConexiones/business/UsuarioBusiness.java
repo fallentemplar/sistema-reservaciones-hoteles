@@ -2,10 +2,10 @@ package com.akk.validadorConexiones.business;
 
 import org.apache.xmlbeans.XmlException;
 
-import com.a
+import com.akk.receptorValidadorConexiones.*;
 
 import com.akk.validadorConexiones.dao.UsuarioDao;
-import com.akk.validadorConexiones.dto.UsuarioDto;
+import com.akk.validadorConexiones.dto.ReservacionDto;
 import com.akk.validadorConexiones.jms.JmsSender;
 
 /**
@@ -27,14 +27,18 @@ public class UsuarioBusiness implements Business {
     public void agregarUsuarios(String xml) {
         try {
             System.out.println("Instancia de negocio: " + this);
-            UsuarioDocument doc = UsuarioDocument.Factory.parse(xml);
-            UsuarioDto usuarioDto = new UsuarioDto();
+            
+            //UsuarioDocument doc = UsuarioDocument.Factory.parse(xml);
+            
+            RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
+            
+            /*UsuarioDto usuarioDto = new UsuarioDto();
             usuarioDto.setLogin(doc.getUsuario().getLogin());
             usuarioDto.setPassword(doc.getUsuario().getPassword());
             usuarioDao.add(usuarioDto);
             System.out.println(
                     doc.xmlText() + " " + doc.getUsuario().getLogin());
-            jmsSender.sendMessage("queue/C", xml);
+            jmsSender.sendMessage("queue/C", xml);*/
         } catch (XmlException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
