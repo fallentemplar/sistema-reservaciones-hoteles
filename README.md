@@ -39,10 +39,10 @@ Proyecto SOA para simular un sistema de reservaciones de hoteles, con interacci�
 1. (Verifica disponibilidad) Se recibe solicitud de reservación
 2. (Verifica disponibilidad) Se genera ID de reservación
 3. (Verifica disponibilidad) Se crea un registro en base de datos (IDReservacion,IDUsuario,IDHotel,FechaReservacion,Monto)
-4. (Verifica disponibilidad)Se pide a Hotel.Validaciones que informe si hay habitaciones disponibles en ese hotel 
+4. (Verifica disponibilidad)Se pide a Hotel.Validaciones que informe si hay habitaciones disponibles en ese hotel. Envía(idReservacion,idHotel,FechaReservacion)
 
-    1. (Validaciones) Si hay habitaciones disponibles para esa fecha, regresar un código de respuesta 200, un ID de habitación y el costo
-    2. (Validaciones) Si no hay, regresar un código de respuesta No Data
+    1. (Validaciones) Si hay habitaciones disponibles para esa fecha, regresar (código de respuesta 200, CodigoReservacionRecibido, IDHabitación, costo)
+    2. (Validaciones) Si no hay, regresar (Código de respuesta No Data,CodigoReservacionRecibido)
 5. (RealizarPagos) A) Si hay disponibilidad, realiza el pago invocando a Banco.Pagos, mandando (IDReservacion:Concepto, Email de cliente, idHotel,costo).
    1. (Pagos) Si el cliente tiene suficientes fondos, se realiza el cargo y se devuelve un código de respuesta 200 y el ID.
    2. (Pagos) Si el cliente no tiene suficientes fondos, se devuelve un código de respuesta No acceptable
