@@ -35,21 +35,21 @@
 	</bean>
 
 	<bean id="consumerSpringListener"
-		class="edu.itq.soa.jms.ConsumerSpringListener">
-		<property name="usuarioBusinessFactory" ref="usuarioBusinessFactory"/>
+		class="com.akk.validadorConexiones.jms.ConsumerSpringListener">
+		<property name="reservacionBusinessFactory" ref="reservacionBusinessFactory"/>
 		<!--  property name="usuarioBusiness" ref="usuarioBusiness" /-->
 	</bean>
-	<bean id="usuarioBusiness"
+	<!-- bean id="usuarioBusiness"
 		class="edu.itq.soa.business.UsuarioBusiness" scope="prototype">
 		<property name="jmsSender" ref="jmsSender" />
 		<property name="usuarioDao" ref="usuarioDao" />
-	</bean>
-	<bean id="usuarioBusiness2"
-		class="edu.itq.soa.business.UsuarioBusiness" scope="prototype">
+	</bean-->
+	<bean id="reservacionBusiness"
+		class="com.akk.validadorConexiones.business.ReservacionBusiness" scope="prototype">
 		<property name="jmsSender" ref="jmsSender" />
-		<property name="usuarioDao" ref="usuarioDao" />
+		<property name="reservacionDao" ref="reservacionDao" />
 	</bean>
-	<bean id="jmsSender" class="edu.itq.soa.jms.JmsSender">
+	<bean id="jmsSender" class="com.akk.validadorConexiones.jms.JmsSender">
 		<property name="connectionFactory"
 			ref="jndiConnectionFactory" />
 		<property name="destinationResolver"
@@ -90,7 +90,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<!-- *********************************** JDBC objects *********************************** -->
-	<bean id="usuarioDao" class="edu.itq.soa.dao.UsuarioDao">
+	<!-- bean id="usuarioDao" class="edu.itq.soa.dao.UsuarioDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean-->
+	<bean id="reservacionDao" class="com.akk.validadorConexiones.dao.ReservacionDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	<!-- *********************************** Transaction manager *********************************** -->
@@ -102,6 +105,10 @@
    <bean id="usuarioBusinessFactory" 
       class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
       <property name="serviceLocatorInterface" value="edu.itq.soa.factory.UsuarioBusinessFactory"/>
+    </bean>
+    <bean id="reservacionBusinessFactory" 
+      class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
+      <property name="serviceLocatorInterface" value="com.akk.validadorConexiones.factory.ReservacionBusinessFactory"/>
     </bean>
 </beans>
 

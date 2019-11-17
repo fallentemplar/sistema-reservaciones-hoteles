@@ -3,7 +3,7 @@ package com.akk.validadorConexiones.business;
 import org.apache.xmlbeans.XmlException;
 
 import com.akk.receptorValidadorConexiones.*;
-
+import com.akk.validadorConexiones.dao.ReservacionDao;
 import com.akk.validadorConexiones.dao.UsuarioDao;
 import com.akk.validadorConexiones.dto.ReservacionDto;
 import com.akk.validadorConexiones.jms.JmsSender;
@@ -13,12 +13,14 @@ import com.akk.validadorConexiones.jms.JmsSender;
  * @author tlopez.
  *
  */
-public class UsuarioBusiness implements Business {
+public class ReservacionBusiness implements Business {
     /** Emisor de mensajes. */
     private JmsSender jmsSender;
 
     /** DAO para manipuaci�n de usuarios. */
     private UsuarioDao usuarioDao;
+    
+    private ReservacionDao reservacionDao;
     
     /**
      * Inserta un usuario con la informaci�n recibida.
@@ -45,6 +47,31 @@ public class UsuarioBusiness implements Business {
         }
     }
 
+    @Override
+    public void agregarReservacion(String xml) {
+        try {
+            System.out.println("Instancia de negocio: " + this);
+            
+            RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
+            ReservacionDto reservacionDto = new ReservacionDto();
+            reservacionDto.setIDHotel(Integer.parseInt(doc.getRequestValidadorConexiones().getIdHotel()));
+            reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
+            reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
+            //reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto);
+            System.out.println(reservacionDto);
+            /*UsuarioDto usuarioDto = new UsuarioDto();
+            usuarioDto.setLogin(doc.getUsuario().getLogin());
+            usuarioDto.setPassword(doc.getUsuario().getPassword());
+            usuarioDao.add(usuarioDto);
+            System.out.println(
+                    doc.xmlText() + " " + doc.getUsuario().getLogin());
+            jmsSender.sendMessage("queue/C", xml);*/
+        } catch (XmlException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param jmsSender the jmsSender to set
      */
@@ -58,10 +85,13 @@ public class UsuarioBusiness implements Business {
     public final void setUsuarioDao(UsuarioDao usuarioDao) {
         this.usuarioDao = usuarioDao;
     }
-
-    @Override
-    public void agregarReservacion(String xml) {
-        // TODO Auto-generated method stub
-        
+    
+    /**
+     * @param usuarioDao the usuarioDao to set
+     */
+    public final void setReservacionDao(ReservacionDao ReservacionDao) {
+        this.reservacionDao = reservacionDao;
     }
+
+    
 }

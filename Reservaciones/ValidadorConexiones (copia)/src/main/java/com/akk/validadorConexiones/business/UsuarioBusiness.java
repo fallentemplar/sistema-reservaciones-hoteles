@@ -58,10 +58,4 @@ public class UsuarioBusiness implements Business {
     public final void setUsuarioDao(UsuarioDao usuarioDao) {
         this.usuarioDao = usuarioDao;
     }
-
-    @Override
-    public void agregarReservacion(String xml) {
-        // TODO Auto-generated method stub
-        
-    }
 }

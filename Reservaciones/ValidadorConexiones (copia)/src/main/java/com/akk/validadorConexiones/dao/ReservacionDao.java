@@ -42,20 +42,6 @@ public class ReservacionDao {
     }
 
     //Aquí van los métodos de BD
-    /*public void AgendarReservacion(ReservacionDto reservacionDto) {
-        jdbcTemplate.execute("INSERT INTO Reservaciones(login, password) VALUES('"
-                + usuarioDto.getLogin() + "', '" + usuarioDto.getPassword()
-                + "')");
-    }*/
-    
-    public int ObtenerIDUsuario(ReservacionDto reservacionDto) {
-        String sql = "SELECT Email FROM Usuarios WHERE idUsuario = ?";
-
-        return jdbcTemplate.queryForObject(
-                sql, 
-                new Object[]{reservacionDto.getEmail()}, 
-                (rs, rowNum) -> rs.getInt("idUsuario"));
-    }
     
 }
 

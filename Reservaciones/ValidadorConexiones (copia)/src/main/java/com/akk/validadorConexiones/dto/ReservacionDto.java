@@ -7,7 +7,6 @@ package com.akk.validadorConexiones.dto;
 public class ReservacionDto {
     
     private Integer IDReservacion;
-    private String Email;
     private Integer IDUsuario;
     private Integer IDHotel;
     private Integer IDHabitacion;
@@ -97,12 +96,6 @@ public class ReservacionDto {
      */
     public void setEstatus(String estatus) {
         Estatus = estatus;
-    }
-    public String getEmail() {
-        return Email;
-    }
-    public void setEmail(String email) {
-        Email = email;
     }
     
 }

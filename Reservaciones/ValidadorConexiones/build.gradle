@@ -27,7 +27,7 @@ dependencies {
 }
 
 war {
-	archiveName "SpringConsumer-${COMPONENT_VERSION}.war"
+	archiveName "ValidadorConexiones-${COMPONENT_VERSION}.war"
 	from("${CONF_FOLDER}") {
 		into "WEB-INF/classes"
 	}

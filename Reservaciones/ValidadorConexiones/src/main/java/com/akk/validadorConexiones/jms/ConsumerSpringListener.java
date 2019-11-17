@@ -9,16 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import com.akk.validadorConexiones.business.ReservacionBusiness;
 import com.akk.validadorConexiones.business.UsuarioBusiness;
+import com.akk.validadorConexiones.factory.ReservacionBusinessFactory;
 import com.akk.validadorConexiones.factory.UsuarioBusinessFactory;
 
 public class ConsumerSpringListener implements MessageListener {
     /**
      * Objeto de ejecución de negocio.
      */
-    private UsuarioBusiness usuarioBusiness;
+    //private UsuarioBusiness usuarioBusiness;
+    private ReservacionBusiness reservacionBusiness;
 
-    private UsuarioBusinessFactory usuarioBusinessFactory;
+    //private UsuarioBusinessFactory usuarioBusinessFactory;
+    private ReservacionBusinessFactory reservacionBusinessFactory;
 
     // private ApplicationContext appContext;
 
@@ -29,12 +33,12 @@ public class ConsumerSpringListener implements MessageListener {
         System.out.println(this);
         try {
             TextMessage txtMsg = (TextMessage) arg0;
+            
             mensaje = txtMsg.getText();
-            // System.out.println("appContext: " + appContext);
-            usuarioBusiness = (UsuarioBusiness) usuarioBusinessFactory.getBusiness("usuarioBusiness2");
-            // usuarioBusiness = (UsuarioBusiness)
-            // appContext.getBean("usuarioBusiness");
-            usuarioBusiness.agregarUsuarios(mensaje);
+            
+            reservacionBusiness = (ReservacionBusiness) reservacionBusinessFactory.getBusiness("reservacionBusiness");
+            
+            reservacionBusiness.agregarReservacion(mensaje);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,8 +47,12 @@ public class ConsumerSpringListener implements MessageListener {
     /**
      * @param usuarioBusiness the usuarioBusiness to set
      */
-    public final void setUsuarioBusiness(UsuarioBusiness usuarioBusiness) {
+    /*public final void setUsuarioBusiness(UsuarioBusiness usuarioBusiness) {
         this.usuarioBusiness = usuarioBusiness;
+    }*/
+    
+    public final void setReservacionBusiness(ReservacionBusiness reservacionBusiness) {
+        this.reservacionBusiness = reservacionBusiness;
     }
 
     // @Override
@@ -56,7 +64,11 @@ public class ConsumerSpringListener implements MessageListener {
     /**
      * @param usuarioBusinessFactory the usuarioBusinessFactory to set
      */
-    public final void setUsuarioBusinessFactory(UsuarioBusinessFactory usuarioBusinessFactory) {
+    /*public final void setUsuarioBusinessFactory(UsuarioBusinessFactory usuarioBusinessFactory) {
         this.usuarioBusinessFactory = usuarioBusinessFactory;
+    }*/
+    
+    public final void setReservacionBusinessFactory(ReservacionBusinessFactory reservacionBusinessFactory) {
+        this.reservacionBusinessFactory = reservacionBusinessFactory;
     }
 }
