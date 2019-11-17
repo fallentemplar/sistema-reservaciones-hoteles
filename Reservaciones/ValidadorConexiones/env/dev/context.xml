@@ -36,8 +36,18 @@
 
 	<bean id="consumerSpringListener"
 		class="edu.itq.soa.jms.ConsumerSpringListener">
-		<property name="jmsSender" ref="jmsSender"/>
-		<property name="usuarioDao" ref="usuarioDao"/>		
+		<property name="usuarioBusinessFactory" ref="usuarioBusinessFactory"/>
+		<!--  property name="usuarioBusiness" ref="usuarioBusiness" /-->
+	</bean>
+	<bean id="usuarioBusiness"
+		class="edu.itq.soa.business.UsuarioBusiness" scope="prototype">
+		<property name="jmsSender" ref="jmsSender" />
+		<property name="usuarioDao" ref="usuarioDao" />
+	</bean>
+	<bean id="usuarioBusiness2"
+		class="edu.itq.soa.business.UsuarioBusiness" scope="prototype">
+		<property name="jmsSender" ref="jmsSender" />
+		<property name="usuarioDao" ref="usuarioDao" />
 	</bean>
 	<bean id="jmsSender" class="edu.itq.soa.jms.JmsSender">
 		<property name="connectionFactory"
@@ -45,11 +55,11 @@
 		<property name="destinationResolver"
 			ref="jndiDestinationResolver" />
 	</bean>
-	<bean id="jndiDestinationResolver" 
-    		class="org.springframework.jms.support.destination.JndiDestinationResolver">
-    	<property name="jndiTemplate" ref="jndiTemplate"/>
-    	<property name="cache" value="true"/>
-    </bean>
+	<bean id="jndiDestinationResolver"
+		class="org.springframework.jms.support.destination.JndiDestinationResolver">
+		<property name="jndiTemplate" ref="jndiTemplate" />
+		<property name="cache" value="true" />
+	</bean>
 	<bean id="jndiConnectionFactory"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiTemplate" ref="jndiTemplate" />
@@ -88,14 +98,10 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+   <bean id="usuarioBusinessFactory" 
+      class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
+      <property name="serviceLocatorInterface" value="edu.itq.soa.factory.UsuarioBusinessFactory"/>
+    </bean>
 </beans>
-
-
-
-
-
-
-
-
-
 

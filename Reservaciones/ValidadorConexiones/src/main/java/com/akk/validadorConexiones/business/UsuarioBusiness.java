@@ -10,14 +10,14 @@ import com.akk.validadorConexiones.jms.JmsSender;
 
 /**
  * Clase de negocio.
- * @author Alexis Aguirre.
+ * @author tlopez.
  *
  */
-public class UsuarioBusiness {
+public class UsuarioBusiness implements Business {
     /** Emisor de mensajes. */
     private JmsSender jmsSender;
 
-    /** DAO para manipuación de usuarios. */
+    /** DAO para manipuaci�n de usuarios. */
     private UsuarioDao usuarioDao;
     
     /**

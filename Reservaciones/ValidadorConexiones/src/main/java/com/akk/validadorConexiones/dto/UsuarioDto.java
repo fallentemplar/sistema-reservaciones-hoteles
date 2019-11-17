@@ -1,33 +1,36 @@
 package com.akk.validadorConexiones.dto;
 
+/**
+ * @author tlopez
+ *
+ */
 public class UsuarioDto {
-    
-    private int id;
-    private String email;
+    private Integer id;
+    private String login;
     private String password;
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     /**
      * @return the login
      */
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
     /**
      * @param login the login to set
      */
-    public void setEmail(String login) {
-        this.email = login;
+    public void setLogin(String login) {
+        this.login = login;
     }
     /**
      * @return the password
@@ -41,5 +44,4 @@ public class UsuarioDto {
     public void setPassword(String password) {
         this.password = password;
     }
-    
 }
