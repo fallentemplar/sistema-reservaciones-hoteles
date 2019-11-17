@@ -8,57 +8,86 @@ package com.springsample.dto;
  *
  */
 public class UsuarioDto {
-    private String id_usuario;
-    private String id_hotel;
-    private String fecha;
-    private Integer monto;
+    private String idReservacion;
+    private String idHotel;
+    private String idHabitacion;
+    private String fechaReservacion;
+    private String codigoRespuesta;
+    private Double CostoHabitacion;
     /**
-     * @return the id_hotel
+     * @return the idReservacion
      */
-    public String getId_hotel() {
-        return id_hotel;
+    public String getIdReservacion() {
+        return idReservacion;
     }
     /**
-     * @param id_hotel the id_hotel to set
+     * @param idReservacion the idReservacion to set
      */
-    public void setId_hotel(String id_hotel) {
-        this.id_hotel = id_hotel;
+    public void setIdReservacion(String idReservacion) {
+        this.idReservacion = idReservacion;
     }
     /**
-     * @return the fecha
+     * @return the idHotel
      */
-    public String getFecha() {
-        return fecha;
+    public String getIdHotel() {
+        return idHotel;
     }
     /**
-     * @param fecha the fecha to set
+     * @param idHotel the idHotel to set
      */
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setIdHotel(String idHotel) {
+        this.idHotel = idHotel;
     }
     /**
-     * @return the monto
+     * @return the idHabitacion
      */
-    public Integer getMonto() {
-        return monto;
+    public String getIdHabitacion() {
+        return idHabitacion;
     }
     /**
-     * @param monto the monto to set
+     * @param idHabitacion the idHabitacion to set
      */
-    public void setMonto(Integer monto) {
-        this.monto = monto;
+    public void setIdHabitacion(String idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
     /**
-     * @return the id_usuario
+     * @return the fechaReservacion
      */
-    public String getId_usuario() {
-        return id_usuario;
+    public String getFechaReservacion() {
+        return fechaReservacion;
     }
     /**
-     * @param id_usuario the id_usuario to set
+     * @param fechaReservacion the fechaReservacion to set
      */
-    public void setId_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setFechaReservacion(String fechaReservacion) {
+        this.fechaReservacion = fechaReservacion;
     }
+    /**
+     * @return the codigoRespuesta
+     */
+    public String getCodigoRespuesta() {
+        return codigoRespuesta;
+    }
+    /**
+     * @param codigoRespuesta the codigoRespuesta to set
+     */
+    public void setCodigoRespuesta(String codigoRespuesta) {
+        this.codigoRespuesta = codigoRespuesta;
+    }
+    /**
+     * @return the costoHabitacion
+     */
+    public Double getCostoHabitacion() {
+        return CostoHabitacion;
+    }
+    /**
+     * @param costoHabitacion the costoHabitacion to set
+     */
+    public void setCostoHabitacion(Double costoHabitacion) {
+        CostoHabitacion = costoHabitacion;
+    }
+
+
+
     
 }

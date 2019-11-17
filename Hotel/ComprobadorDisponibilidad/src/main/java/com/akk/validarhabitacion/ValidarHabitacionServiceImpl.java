@@ -6,11 +6,21 @@
  * by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST)
  */
     package com.akk.validarhabitacion;
-    /**
+
+import java.util.List;
+
+import com.springsample.dao.UsuarioDao;
+import com.springsample.dto.UsuarioDto;
+
+import edu.itq.soa.validarhab.RequestValidar;
+import edu.itq.soa.validarhab.ResponseValidar;
+
+/**
      *  ValidarHabitacionServiceSkeleton java skeleton for the axisService
      */
-    public class ValidarHabitacionServiceImpl{
-        
+    public class ValidarHabitacionServiceImpl extends ValidarHabitacionServiceSkeleton{
+        /** Objeto para acceso a datos. */
+        private UsuarioDao usuarioDao;
          
         /**
          * Auto generated method signature
@@ -19,13 +29,32 @@
              * @return responseValidar 
          */
         
-                 public edu.itq.soa.validarhab.ResponseValidar validarHabitacionOperation
-                  (
-                  edu.itq.soa.validarhab.RequestValidar requestValidar
-                  )
-            {
-                //TODO : fill this with the necessary business logic
-                throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#validarHabitacionOperation");
+                 public ResponseValidar validarHabitacionOperation(RequestValidar request) {
+                     ResponseValidar response = new ResponseValidar();
+                     UsuarioDto usuarioDto = new UsuarioDto();
+                     response.setCodigoRespuesta(200);
+                     response.setIdReservacion(request.getIdReservacion());
+                     
+                     try {
+                         usuarioDto.setIdHotel(request.getIdHotel());
+                         usuarioDto.setFechaReservacion(request.getFechaReservacion());
+                     List<UsuarioDto> list = usuarioDao.consultaHabitacion(usuarioDto);
+                     for (UsuarioDto usuarioDto3 : list) {
+                        response.setIdHabitacion(usuarioDto3.getIdHabitacion());
+                        response.setCosto(usuarioDto3.getCostoHabitacion());
+                        }
+                     } catch (Exception e) {
+                         System.out.println("Error en transacción: " + e.getMessage());
+                         }
+                     
+                     return response;
+                 }
+
+        /**
+         * @param usuarioDao the usuarioDao to set
+         */
+        public void setUsuarioDao(UsuarioDao usuarioDao) {
+            this.usuarioDao = usuarioDao;
         }
      
     }

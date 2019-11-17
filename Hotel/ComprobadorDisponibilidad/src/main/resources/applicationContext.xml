@@ -15,7 +15,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/usuarios" />
+		<property name="url" value="jdbc:mysql://localhost/hotel" />
 		<property name="username" value="root" />
 		<property name="password" value="itq2012" />
 	</bean>
@@ -40,7 +40,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="validarHabitacionServiceImpl"
-		class="com.solicitud.ValidarsolicitudImpl">
+		class="com.akk.validarhabitacion.ValidarHabitacionServiceImpl">
 		<property name="usuarioDao" ref="usuarioDao" />
 	</bean>
 	<bean id="applicationContext"

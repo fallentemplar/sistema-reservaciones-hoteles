@@ -26,120 +26,90 @@
             
 
                         /**
-                        * field for Id_usuario
+                        * field for IdReservacion
                         */
 
                         
-                                    protected java.lang.String localId_usuario ;
+                                    protected java.lang.String localIdReservacion ;
                                 
 
                            /**
                            * Auto generated getter method
                            * @return java.lang.String
                            */
-                           public  java.lang.String getId_usuario(){
-                               return localId_usuario;
+                           public  java.lang.String getIdReservacion(){
+                               return localIdReservacion;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param Id_usuario
+                               * @param param IdReservacion
                                */
-                               public void setId_usuario(java.lang.String param){
+                               public void setIdReservacion(java.lang.String param){
                             
-                                            this.localId_usuario=param;
+                                            this.localIdReservacion=param;
                                     
 
                                }
                             
 
                         /**
-                        * field for Id_hotel
+                        * field for IdHotel
                         */
 
                         
-                                    protected java.lang.String localId_hotel ;
+                                    protected java.lang.String localIdHotel ;
                                 
 
                            /**
                            * Auto generated getter method
                            * @return java.lang.String
                            */
-                           public  java.lang.String getId_hotel(){
-                               return localId_hotel;
+                           public  java.lang.String getIdHotel(){
+                               return localIdHotel;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param Id_hotel
+                               * @param param IdHotel
                                */
-                               public void setId_hotel(java.lang.String param){
+                               public void setIdHotel(java.lang.String param){
                             
-                                            this.localId_hotel=param;
+                                            this.localIdHotel=param;
                                     
 
                                }
                             
 
                         /**
-                        * field for Fecha
+                        * field for FechaReservacion
                         */
 
                         
-                                    protected java.lang.String localFecha ;
+                                    protected java.lang.String localFechaReservacion ;
                                 
 
                            /**
                            * Auto generated getter method
                            * @return java.lang.String
                            */
-                           public  java.lang.String getFecha(){
-                               return localFecha;
+                           public  java.lang.String getFechaReservacion(){
+                               return localFechaReservacion;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param Fecha
+                               * @param param FechaReservacion
                                */
-                               public void setFecha(java.lang.String param){
+                               public void setFechaReservacion(java.lang.String param){
                             
-                                            this.localFecha=param;
-                                    
-
-                               }
-                            
-
-                        /**
-                        * field for Monto
-                        */
-
-                        
-                                    protected int localMonto ;
-                                
-
-                           /**
-                           * Auto generated getter method
-                           * @return int
-                           */
-                           public  int getMonto(){
-                               return localMonto;
-                           }
-
-                           
-                        
-                            /**
-                               * Auto generated setter method
-                               * @param param Monto
-                               */
-                               public void setMonto(int param){
-                            
-                                            this.localMonto=param;
+                                            this.localFechaReservacion=param;
                                     
 
                                }
@@ -205,69 +175,56 @@
                    }
                
                                     namespace = "http://itq.edu/soa/validarhab";
-                                    writeStartElement(null, namespace, "id_usuario", xmlWriter);
+                                    writeStartElement(null, namespace, "idReservacion", xmlWriter);
                              
 
-                                          if (localId_usuario==null){
+                                          if (localIdReservacion==null){
                                               // write the nil attribute
                                               
-                                                     throw new org.apache.axis2.databinding.ADBException("id_usuario cannot be null!!");
+                                                     throw new org.apache.axis2.databinding.ADBException("idReservacion cannot be null!!");
                                                   
                                           }else{
 
                                         
-                                                   xmlWriter.writeCharacters(localId_usuario);
+                                                   xmlWriter.writeCharacters(localIdReservacion);
                                             
                                           }
                                     
                                    xmlWriter.writeEndElement();
                              
                                     namespace = "http://itq.edu/soa/validarhab";
-                                    writeStartElement(null, namespace, "id_hotel", xmlWriter);
+                                    writeStartElement(null, namespace, "idHotel", xmlWriter);
                              
 
-                                          if (localId_hotel==null){
+                                          if (localIdHotel==null){
                                               // write the nil attribute
                                               
-                                                     throw new org.apache.axis2.databinding.ADBException("id_hotel cannot be null!!");
+                                                     throw new org.apache.axis2.databinding.ADBException("idHotel cannot be null!!");
                                                   
                                           }else{
 
                                         
-                                                   xmlWriter.writeCharacters(localId_hotel);
+                                                   xmlWriter.writeCharacters(localIdHotel);
                                             
                                           }
                                     
                                    xmlWriter.writeEndElement();
                              
                                     namespace = "http://itq.edu/soa/validarhab";
-                                    writeStartElement(null, namespace, "fecha", xmlWriter);
+                                    writeStartElement(null, namespace, "fechaReservacion", xmlWriter);
                              
 
-                                          if (localFecha==null){
+                                          if (localFechaReservacion==null){
                                               // write the nil attribute
                                               
-                                                     throw new org.apache.axis2.databinding.ADBException("fecha cannot be null!!");
+                                                     throw new org.apache.axis2.databinding.ADBException("fechaReservacion cannot be null!!");
                                                   
                                           }else{
 
                                         
-                                                   xmlWriter.writeCharacters(localFecha);
+                                                   xmlWriter.writeCharacters(localFechaReservacion);
                                             
                                           }
-                                    
-                                   xmlWriter.writeEndElement();
-                             
-                                    namespace = "http://itq.edu/soa/validarhab";
-                                    writeStartElement(null, namespace, "monto", xmlWriter);
-                             
-                                               if (localMonto==java.lang.Integer.MIN_VALUE) {
-                                           
-                                                         throw new org.apache.axis2.databinding.ADBException("monto cannot be null!!");
-                                                      
-                                               } else {
-                                                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMonto));
-                                               }
                                     
                                    xmlWriter.writeEndElement();
                              
@@ -457,38 +414,32 @@
 
                 
                                       elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
-                                                                      "id_usuario"));
+                                                                      "idReservacion"));
                                  
-                                        if (localId_usuario != null){
-                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localId_usuario));
+                                        if (localIdReservacion != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localIdReservacion));
                                         } else {
-                                           throw new org.apache.axis2.databinding.ADBException("id_usuario cannot be null!!");
+                                           throw new org.apache.axis2.databinding.ADBException("idReservacion cannot be null!!");
                                         }
                                     
                                       elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
-                                                                      "id_hotel"));
+                                                                      "idHotel"));
                                  
-                                        if (localId_hotel != null){
-                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localId_hotel));
+                                        if (localIdHotel != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localIdHotel));
                                         } else {
-                                           throw new org.apache.axis2.databinding.ADBException("id_hotel cannot be null!!");
+                                           throw new org.apache.axis2.databinding.ADBException("idHotel cannot be null!!");
                                         }
                                     
                                       elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
-                                                                      "fecha"));
+                                                                      "fechaReservacion"));
                                  
-                                        if (localFecha != null){
-                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFecha));
+                                        if (localFechaReservacion != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localFechaReservacion));
                                         } else {
-                                           throw new org.apache.axis2.databinding.ADBException("fecha cannot be null!!");
+                                           throw new org.apache.axis2.databinding.ADBException("fechaReservacion cannot be null!!");
                                         }
                                     
-                                      elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
-                                                                      "monto"));
-                                 
-                                elementList.add(
-                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localMonto));
-                            
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
             
@@ -567,17 +518,17 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","id_usuario").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","idReservacion").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
-                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"id_usuario" +"  cannot be null");
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"idReservacion" +"  cannot be null");
                                     }
                                     
 
                                     java.lang.String content = reader.getElementText();
                                     
-                                              object.setId_usuario(
+                                              object.setIdReservacion(
                                                     org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
                                               
                                         reader.next();
@@ -592,17 +543,17 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","id_hotel").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","idHotel").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
-                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"id_hotel" +"  cannot be null");
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"idHotel" +"  cannot be null");
                                     }
                                     
 
                                     java.lang.String content = reader.getElementText();
                                     
-                                              object.setId_hotel(
+                                              object.setIdHotel(
                                                     org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
                                               
                                         reader.next();
@@ -617,43 +568,18 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","fecha").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","fechaReservacion").equals(reader.getName())){
                                 
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)){
-                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"fecha" +"  cannot be null");
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"fechaReservacion" +"  cannot be null");
                                     }
                                     
 
                                     java.lang.String content = reader.getElementText();
                                     
-                                              object.setFecha(
+                                              object.setFechaReservacion(
                                                     org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
-                                              
-                                        reader.next();
-                                    
-                              }  // End of if for expected property start element
-                                
-                                else{
-                                    // A start element we are not expecting indicates an invalid parameter was passed
-                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
-                                }
-                            
-                                    
-                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
-                                
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","monto").equals(reader.getName())){
-                                
-                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
-                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
-                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"monto" +"  cannot be null");
-                                    }
-                                    
-
-                                    java.lang.String content = reader.getElementText();
-                                    
-                                              object.setMonto(
-                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToInt(content));
                                               
                                         reader.next();
                                     

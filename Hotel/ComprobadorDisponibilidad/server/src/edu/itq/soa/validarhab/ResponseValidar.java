@@ -26,42 +26,147 @@
             
 
                         /**
-                        * field for Disponibilidad
+                        * field for CodigoRespuesta
                         */
 
                         
-                                    protected edu.itq.soa.validarhab.Disponibilidad_type0 localDisponibilidad ;
+                                    protected int localCodigoRespuesta ;
                                 
-                           /*  This tracker boolean wil be used to detect whether the user called the set method
-                          *   for this attribute. It will be used to determine whether to include this field
-                           *   in the serialized XML
-                           */
-                           protected boolean localDisponibilidadTracker = false ;
-
-                           public boolean isDisponibilidadSpecified(){
-                               return localDisponibilidadTracker;
-                           }
-
-                           
 
                            /**
                            * Auto generated getter method
-                           * @return edu.itq.soa.validarhab.Disponibilidad_type0
+                           * @return int
                            */
-                           public  edu.itq.soa.validarhab.Disponibilidad_type0 getDisponibilidad(){
-                               return localDisponibilidad;
+                           public  int getCodigoRespuesta(){
+                               return localCodigoRespuesta;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param Disponibilidad
+                               * @param param CodigoRespuesta
                                */
-                               public void setDisponibilidad(edu.itq.soa.validarhab.Disponibilidad_type0 param){
-                            localDisponibilidadTracker = param != null;
+                               public void setCodigoRespuesta(int param){
+                            
+                                            this.localCodigoRespuesta=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for IdReservacion
+                        */
+
+                        
+                                    protected java.lang.String localIdReservacion ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return java.lang.String
+                           */
+                           public  java.lang.String getIdReservacion(){
+                               return localIdReservacion;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param IdReservacion
+                               */
+                               public void setIdReservacion(java.lang.String param){
+                            
+                                            this.localIdReservacion=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for IdHabitacion
+                        */
+
+                        
+                                    protected java.lang.String localIdHabitacion ;
+                                
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localIdHabitacionTracker = false ;
+
+                           public boolean isIdHabitacionSpecified(){
+                               return localIdHabitacionTracker;
+                           }
+
+                           
+
+                           /**
+                           * Auto generated getter method
+                           * @return java.lang.String
+                           */
+                           public  java.lang.String getIdHabitacion(){
+                               return localIdHabitacion;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param IdHabitacion
+                               */
+                               public void setIdHabitacion(java.lang.String param){
+                            localIdHabitacionTracker = param != null;
                                    
-                                            this.localDisponibilidad=param;
+                                            this.localIdHabitacion=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for Costo
+                        */
+
+                        
+                                    protected double localCosto ;
+                                
+                           /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+                           protected boolean localCostoTracker = false ;
+
+                           public boolean isCostoSpecified(){
+                               return localCostoTracker;
+                           }
+
+                           
+
+                           /**
+                           * Auto generated getter method
+                           * @return double
+                           */
+                           public  double getCosto(){
+                               return localCosto;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param Costo
+                               */
+                               public void setCosto(double param){
+                            
+                                       // setting primitive attribute tracker to true
+                                       localCostoTracker =
+                                       !java.lang.Double.isNaN(param);
+                                   
+                                            this.localCosto=param;
                                     
 
                                }
@@ -125,13 +230,69 @@
 
                
                    }
-                if (localDisponibilidadTracker){
-                                            if (localDisponibilidad==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("disponibilidad cannot be null!!");
-                                            }
-                                           localDisponibilidad.serialize(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","disponibilidad"),
-                                               xmlWriter);
-                                        }
+               
+                                    namespace = "http://itq.edu/soa/validarhab";
+                                    writeStartElement(null, namespace, "codigoRespuesta", xmlWriter);
+                             
+                                               if (localCodigoRespuesta==java.lang.Integer.MIN_VALUE) {
+                                           
+                                                         throw new org.apache.axis2.databinding.ADBException("codigoRespuesta cannot be null!!");
+                                                      
+                                               } else {
+                                                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCodigoRespuesta));
+                                               }
+                                    
+                                   xmlWriter.writeEndElement();
+                             
+                                    namespace = "http://itq.edu/soa/validarhab";
+                                    writeStartElement(null, namespace, "idReservacion", xmlWriter);
+                             
+
+                                          if (localIdReservacion==null){
+                                              // write the nil attribute
+                                              
+                                                     throw new org.apache.axis2.databinding.ADBException("idReservacion cannot be null!!");
+                                                  
+                                          }else{
+
+                                        
+                                                   xmlWriter.writeCharacters(localIdReservacion);
+                                            
+                                          }
+                                    
+                                   xmlWriter.writeEndElement();
+                              if (localIdHabitacionTracker){
+                                    namespace = "http://itq.edu/soa/validarhab";
+                                    writeStartElement(null, namespace, "idHabitacion", xmlWriter);
+                             
+
+                                          if (localIdHabitacion==null){
+                                              // write the nil attribute
+                                              
+                                                     throw new org.apache.axis2.databinding.ADBException("idHabitacion cannot be null!!");
+                                                  
+                                          }else{
+
+                                        
+                                                   xmlWriter.writeCharacters(localIdHabitacion);
+                                            
+                                          }
+                                    
+                                   xmlWriter.writeEndElement();
+                             } if (localCostoTracker){
+                                    namespace = "http://itq.edu/soa/validarhab";
+                                    writeStartElement(null, namespace, "costo", xmlWriter);
+                             
+                                               if (java.lang.Double.isNaN(localCosto)) {
+                                           
+                                                         throw new org.apache.axis2.databinding.ADBException("costo cannot be null!!");
+                                                      
+                                               } else {
+                                                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCosto));
+                                               }
+                                    
+                                   xmlWriter.writeEndElement();
+                             }
                     xmlWriter.writeEndElement();
                
 
@@ -316,16 +477,37 @@
                  java.util.ArrayList elementList = new java.util.ArrayList();
                  java.util.ArrayList attribList = new java.util.ArrayList();
 
-                 if (localDisponibilidadTracker){
-                            elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
-                                                                      "disponibilidad"));
+                
+                                      elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
+                                                                      "codigoRespuesta"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCodigoRespuesta));
                             
-                            
-                                    if (localDisponibilidad==null){
-                                         throw new org.apache.axis2.databinding.ADBException("disponibilidad cannot be null!!");
-                                    }
-                                    elementList.add(localDisponibilidad);
-                                }
+                                      elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
+                                                                      "idReservacion"));
+                                 
+                                        if (localIdReservacion != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localIdReservacion));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("idReservacion cannot be null!!");
+                                        }
+                                     if (localIdHabitacionTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
+                                                                      "idHabitacion"));
+                                 
+                                        if (localIdHabitacion != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localIdHabitacion));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("idHabitacion cannot be null!!");
+                                        }
+                                    } if (localCostoTracker){
+                                      elementList.add(new javax.xml.namespace.QName("http://itq.edu/soa/validarhab",
+                                                                      "costo"));
+                                 
+                                elementList.add(
+                                   org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCosto));
+                            }
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
             
@@ -404,9 +586,68 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","disponibilidad").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","codigoRespuesta").equals(reader.getName())){
                                 
-                                                object.setDisponibilidad(edu.itq.soa.validarhab.Disponibilidad_type0.Factory.parse(reader));
+                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
+                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"codigoRespuesta" +"  cannot be null");
+                                    }
+                                    
+
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setCodigoRespuesta(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToInt(content));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","idReservacion").equals(reader.getName())){
+                                
+                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
+                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"idReservacion" +"  cannot be null");
+                                    }
+                                    
+
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setIdReservacion(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","idHabitacion").equals(reader.getName())){
+                                
+                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
+                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"idHabitacion" +"  cannot be null");
+                                    }
+                                    
+
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setIdHabitacion(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
                                               
                                         reader.next();
                                     
@@ -414,6 +655,32 @@
                                 
                                     else {
                                         
+                                    }
+                                
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("http://itq.edu/soa/validarhab","costo").equals(reader.getName())){
+                                
+                                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance","nil");
+                                    if ("true".equals(nillableValue) || "1".equals(nillableValue)){
+                                        throw new org.apache.axis2.databinding.ADBException("The element: "+"costo" +"  cannot be null");
+                                    }
+                                    
+
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setCosto(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToDouble(content));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                    else {
+                                        
+                                               object.setCosto(java.lang.Double.NaN);
+                                           
                                     }
                                   
                             while (!reader.isStartElement() && !reader.isEndElement())

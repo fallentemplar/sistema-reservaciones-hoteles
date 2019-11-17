@@ -21,26 +21,6 @@
                                                        javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
 
               
-                  if (
-                  "http://itq.edu/soa/validarhab".equals(namespaceURI) &&
-                  "habitacionesDisponibles_type0".equals(typeName)){
-                   
-                            return  edu.itq.soa.validarhab.HabitacionesDisponibles_type0.Factory.parse(reader);
-                        
-
-                  }
-
-              
-                  if (
-                  "http://itq.edu/soa/validarhab".equals(namespaceURI) &&
-                  "disponibilidad_type0".equals(typeName)){
-                   
-                            return  edu.itq.soa.validarhab.Disponibilidad_type0.Factory.parse(reader);
-                        
-
-                  }
-
-              
              throw new org.apache.axis2.databinding.ADBException("Unsupported type " + namespaceURI + " " + typeName);
           }
 
