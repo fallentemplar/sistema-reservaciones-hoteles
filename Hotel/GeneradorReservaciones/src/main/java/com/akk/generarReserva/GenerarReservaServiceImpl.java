@@ -36,18 +36,17 @@ import edu.itq.soa.generarreserva.ResponseGenerar;
                      response.setIdReservacion(request.getIdReservacion());
                      
                      try {
+                         usuarioDto.setIdReservacion(request.getIdReservacion());
+                         usuarioDto.setIdHabitacion(request.getIdHabitacion());
+                         usuarioDto.setIdHotel(request.getIdHotel());
+                         usuarioDto.setFechaReservacion(request.getFechaReservacion());
+                         usuarioDto.setEmailUsuario(request.getEmailUsuario());
                      List<UsuarioDto> list = usuarioDao.consultaDisp(usuarioDto);
                      for (UsuarioDto usuarioDto3 : list) {
                          System.out.println(usuarioDto3.getIdHabitacion());
                          if (usuarioDto3.getIdReservacion() == null ) {
                              response.setCodigoRespuesta(200);
-                             usuarioDto.setIdReservacion(request.getIdReservacion());
-                             usuarioDto.setIdHabitacion(request.getIdHabitacion());
-                             usuarioDto.setIdHotel(request.getIdHotel());
-                             usuarioDto.setFechaReservacion(request.getFechaReservacion());
-                             usuarioDto.setEmailUsuario(request.getEmailUsuario());
                              usuarioDao.add(usuarioDto);
-                             
                          }else {
                              response.setCodigoRespuesta(204);               
                          }

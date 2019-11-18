@@ -19,7 +19,7 @@ public class SpringInit2 implements ServiceLifeCycle {
         ClassLoader classLoader = service.getClassLoader();
         ClassPathXmlApplicationContext appCtx = new
             ClassPathXmlApplicationContext(new String[] 
-                    {"applicationContext.xml"}, false);
+                    {"Context.xml"}, false);
         appCtx.setClassLoader(classLoader);
         appCtx.refresh();
     }

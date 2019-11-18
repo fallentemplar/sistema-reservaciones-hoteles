@@ -43,7 +43,7 @@
 		class="com.akk.generarReserva.GenerarReservaServiceImpl">
 		<property name="usuarioDao" ref="usuarioDao" />
 	</bean>
-	<bean id="applicationContext"
+	<bean id="Context"
 		class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
 	
 </beans>
