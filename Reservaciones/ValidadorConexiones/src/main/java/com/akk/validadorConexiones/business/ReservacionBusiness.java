@@ -25,7 +25,7 @@ public class ReservacionBusiness implements Business {
     public void agregarReservacion(String xml) {
         
         try {
-            System.out.println("Instancia de negocio: " + this);
+            System.out.println("Super instancia de negocio: " + this);
             
             RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
             ReservacionDto reservacionDto = new ReservacionDto();
@@ -33,7 +33,10 @@ public class ReservacionBusiness implements Business {
             reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
             reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
             //reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto);
-            System.out.println(reservacionDto);
+            System.out.println(reservacionDto.getEmail()+"|"+reservacionDto.getIDHotel());
+            System.out.println("-----------------------\n\n");
+            System.out.println(xml);
+            System.out.println("-----------------------\n\n");
             /*UsuarioDto usuarioDto = new UsuarioDto();
             usuarioDto.setLogin(doc.getUsuario().getLogin());
             usuarioDto.setPassword(doc.getUsuario().getPassword());

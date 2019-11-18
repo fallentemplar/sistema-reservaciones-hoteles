@@ -37,13 +37,7 @@
 	<bean id="consumerSpringListener"
 		class="com.akk.validadorConexiones.jms.ConsumerSpringListener">
 		<property name="reservacionBusinessFactory" ref="reservacionBusinessFactory"/>
-		<!--  property name="usuarioBusiness" ref="usuarioBusiness" /-->
 	</bean>
-	<!-- bean id="usuarioBusiness"
-		class="edu.itq.soa.business.UsuarioBusiness" scope="prototype">
-		<property name="jmsSender" ref="jmsSender" />
-		<property name="usuarioDao" ref="usuarioDao" />
-	</bean-->
 	<bean id="reservacionBusiness"
 		class="com.akk.validadorConexiones.business.ReservacionBusiness" scope="prototype">
 		<property name="jmsSender" ref="jmsSender" />
@@ -102,10 +96,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-   <!--bean id="usuarioBusinessFactory" 
-      class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
-      <property name="serviceLocatorInterface" value="edu.itq.soa.factory.UsuarioBusinessFactory"/>
-    </bean-->
     <bean id="reservacionBusinessFactory" 
       class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
       <property name="serviceLocatorInterface" value="com.akk.validadorConexiones.factory.ReservacionBusinessFactory"/>

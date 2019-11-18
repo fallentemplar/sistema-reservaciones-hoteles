@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import com.akk.validadorConexiones.business.ReservacionBusiness;
-import com.akk.validadorConexiones.business.UsuarioBusiness;
 import com.akk.validadorConexiones.factory.ReservacionBusinessFactory;
 import com.akk.validadorConexiones.factory.UsuarioBusinessFactory;
 
@@ -30,7 +29,7 @@ public class ConsumerSpringListener implements MessageListener {
     public void onMessage(Message arg0) {
         String mensaje = "";
         
-        System.out.println(this);
+        System.out.println("OnMessage:" +this);
         try {
             TextMessage txtMsg = (TextMessage) arg0;
             
@@ -39,6 +38,7 @@ public class ConsumerSpringListener implements MessageListener {
             reservacionBusiness = (ReservacionBusiness) reservacionBusinessFactory.getBusiness("reservacionBusiness");
             
             reservacionBusiness.agregarReservacion(mensaje);
+            System.out.println("Ya volví");
         } catch (Exception e) {
             e.printStackTrace();
         }
