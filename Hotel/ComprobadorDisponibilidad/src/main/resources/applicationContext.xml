@@ -43,6 +43,7 @@
 		class="com.akk.validarhabitacion.ValidarHabitacionServiceImpl">
 		<property name="usuarioDao" ref="usuarioDao" />
 	</bean>
+	
 	<bean id="applicationContext"
 		class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
 	
