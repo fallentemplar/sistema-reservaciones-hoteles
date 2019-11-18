@@ -34,23 +34,21 @@ public class ReservacionBusiness implements Business {
             
             RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
             ReservacionDto reservacionDto = new ReservacionDto();
-            reservacionDto.setIDHotel(Integer.parseInt(doc.getRequestValidadorConexiones().getIdHotel()));
-            reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
-            reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
-            //reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto);
-            System.out.println(reservacionDto.getEmail()+"|"+reservacionDto.getIDHotel()+" | "+reservacionDto.getFECHA());
+            
             System.out.println("-----------------------\n\n");
             System.out.println(xml);
             System.out.println("-----------------------\n\n");
             
-            AgendarReservacion(doc);
-            
+            AgendarReservacion(reservacionDto,doc);
+            System.out.println("A");
+            reservacionDto.setIDReservacion(reservacionDao.ObtenerIDReservacion(reservacionDto));
+            System.out.println("B");
             ValidarHabitacionServiceStub stubValidarHabitacion=null;
             try {
                 stubValidarHabitacion = new ValidarHabitacionServiceStub("http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
                 
                 ValidarHabitacionServiceStub.RequestValidar request = new ValidarHabitacionServiceStub.RequestValidar(); 
-                request.setIdReservacion("123456789876543");
+                request.setIdReservacion(reservacionDto.getIDReservacion().toString());
                 request.setIdHotel(reservacionDto.getIDHotel().toString());
                 request.setFechaReservacion(reservacionDto.getFECHA());
                 
@@ -88,9 +86,9 @@ public class ReservacionBusiness implements Business {
         this.reservacionDao = reservacionDao;
     }
 
-    private void AgendarReservacion(RequestValidadorConexionesDocument doc) {
+    private void AgendarReservacion(ReservacionDto reservacionDto, RequestValidadorConexionesDocument doc) {
         System.out.println("1");
-        ReservacionDto reservacionDto = new ReservacionDto();
+        
         System.out.println("2");
         reservacionDto.setIDReservacion(null);
         System.out.println("3");
