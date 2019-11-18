@@ -49,7 +49,7 @@ Proyecto SOA para simular un sistema de reservaciones de hoteles, con interacci�
 
 6. (RealizarPagos) B)
 
-7. (Crear Reservación) Invoca a Reservaciones con (IDreservacion,Email,IDHabitacion,FechaReservacion)
+7. (Crear Reservación) Invoca a Reservaciones con (IDreservacion,Email,IDHotel,IDHabitacion,FechaReservacion)
 8. (Reservaciones) Verifica que la habitación siga disponible.
    1. (Reservaciones) A) Si sigue disponible, registrarla en base de datos y devolver un código de respuesta 200 y el IDReservacion recibido.
    2. (Reservaciones) B) Si no está disponible, devolver un código de respuesta No Acceptable y el IDReservacion recibido.
