@@ -17,38 +17,13 @@ public class ReservacionBusiness implements Business {
     /** Emisor de mensajes. */
     private JmsSender jmsSender;
 
-    /** DAO para manipuaci�n de usuarios. */
-    private UsuarioDao usuarioDao;
     
     private ReservacionDao reservacionDao;
     
-    /**
-     * Inserta un usuario con la informaci�n recibida.
-     * @param xml XML con la informaci�n.
-     */
-    public void agregarUsuarios(String xml) {
-        try {
-            System.out.println("Instancia de negocio: " + this);
-            
-            //UsuarioDocument doc = UsuarioDocument.Factory.parse(xml);
-            
-            RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
-            
-            /*UsuarioDto usuarioDto = new UsuarioDto();
-            usuarioDto.setLogin(doc.getUsuario().getLogin());
-            usuarioDto.setPassword(doc.getUsuario().getPassword());
-            usuarioDao.add(usuarioDto);
-            System.out.println(
-                    doc.xmlText() + " " + doc.getUsuario().getLogin());
-            jmsSender.sendMessage("queue/C", xml);*/
-        } catch (XmlException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void agregarReservacion(String xml) {
+        
         try {
             System.out.println("Instancia de negocio: " + this);
             
@@ -64,8 +39,8 @@ public class ReservacionBusiness implements Business {
             usuarioDto.setPassword(doc.getUsuario().getPassword());
             usuarioDao.add(usuarioDto);
             System.out.println(
-                    doc.xmlText() + " " + doc.getUsuario().getLogin());
-            jmsSender.sendMessage("queue/C", xml);*/
+                    doc.xmlText() + " " + doc.getUsuario().getLogin());*/
+            jmsSender.sendMessage("queue/C", xml);
         } catch (XmlException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -79,13 +54,6 @@ public class ReservacionBusiness implements Business {
         this.jmsSender = jmsSender;
     }
 
-    /**
-     * @param usuarioDao the usuarioDao to set
-     */
-    public final void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
-    }
-    
     /**
      * @param usuarioDao the usuarioDao to set
      */

@@ -102,10 +102,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-   <bean id="usuarioBusinessFactory" 
+   <!--bean id="usuarioBusinessFactory" 
       class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
       <property name="serviceLocatorInterface" value="edu.itq.soa.factory.UsuarioBusinessFactory"/>
-    </bean>
+    </bean-->
     <bean id="reservacionBusinessFactory" 
       class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
       <property name="serviceLocatorInterface" value="com.akk.validadorConexiones.factory.ReservacionBusinessFactory"/>

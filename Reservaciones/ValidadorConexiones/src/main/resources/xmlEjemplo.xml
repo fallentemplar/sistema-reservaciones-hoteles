@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:RequestValidadorConexiones xsi:schemaLocation="http://akk.com/ReceptorValidadorConexiones validadorConexiones.xsd" xmlns:tns="http://akk.com/ReceptorValidadorConexiones" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:emailUsuario>aaaguirrer@hotmail.com</tns:emailUsuario>
+	<tns:idHotel>12345</tns:idHotel>
+	<tns:fechaReservacion>15-01-1997</tns:fechaReservacion>
+</tns:RequestValidadorConexiones>

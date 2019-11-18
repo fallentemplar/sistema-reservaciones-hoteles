@@ -29,7 +29,7 @@ public class ConsumerSpringListener implements MessageListener {
     @Override
     public void onMessage(Message arg0) {
         String mensaje = "";
-
+        
         System.out.println(this);
         try {
             TextMessage txtMsg = (TextMessage) arg0;
