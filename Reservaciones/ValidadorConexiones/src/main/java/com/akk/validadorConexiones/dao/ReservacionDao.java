@@ -16,19 +16,19 @@ import com.akk.validadorConexiones.dto.ReservacionDto;
  */
 public class ReservacionDao {
 
-	private static final String IDReservacion = "idReservacion";
+	private String IDReservacion = "idReservacion";
 
-    private static final String IDUsuario = "idUsuario";
+    private String IDUsuario = "idUsuario";
 
-    private static final String IDHotel = "idHotel";
+    private String IDHotel = "idHotel";
     
-    private static final String IDHabitacion = "idHabitacion";
+    private String IDHabitacion = "idHabitacion";
     
-    private static final String FECHA="Fecha";
+    private String FECHA="Fecha";
     
-    private static final String MONTO="Monto";
+    private String MONTO="Monto";
     
-    private static final String Estatus="Estatus";
+    private String Estatus="Estatus";
 
 	
     protected JdbcTemplate jdbcTemplate;
@@ -40,27 +40,23 @@ public class ReservacionDao {
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-    //Aquí van los métodos de BD
-    /*public void AgendarReservacion(ReservacionDto reservacionDto) {
-        jdbcTemplate.execute("INSERT INTO Reservaciones(login, password) VALUES('"
-                + usuarioDto.getLogin() + "', '" + usuarioDto.getPassword()
-                + "')");
-    }*/
     
     public int ObtenerIDUsuario(ReservacionDto reservacionDto) {
-        String sql = "SELECT Email FROM Usuarios WHERE idUsuario = ?";
-
+        String sql = "SELECT idUsuario FROM Usuarios WHERE Email = ?";
+        System.out.println(sql);
         return jdbcTemplate.queryForObject(
                 sql, 
                 new Object[]{reservacionDto.getEmail()}, 
                 (rs, rowNum) -> rs.getInt("idUsuario"));
     }
     
+    public void AgregarReservacion(ReservacionDto reservacionDto) {
+        System.out.println("Usuario: "+reservacionDto.getIDUsuario());
+        String sql = "INSERT INTO Reservaciones(idUsuario,idHotel,Fecha,Monto,Estatus,idHabitacion) VALUES("
+        +reservacionDto.getIDUsuario()+","+reservacionDto.getIDHotel()+",'"+reservacionDto.getFECHA()+"',"
+        +reservacionDto.getMONTO()+",'"+reservacionDto.getEstatus()+"',"+reservacionDto.getIDHabitacion()+")";
+        jdbcTemplate.execute(sql);
+    }
+    
+    
 }
-
-
-
-
-
-

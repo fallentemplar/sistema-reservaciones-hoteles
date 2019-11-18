@@ -1,6 +1,7 @@
 package com.akk.validadorConexiones.business;
 
 import java.rmi.RemoteException;
+import java.sql.Time;
 
 import org.apache.axis2.AxisFault;
 import org.apache.xmlbeans.XmlException;
@@ -9,6 +10,7 @@ import com.akk.receptorValidadorConexiones.*;
 import com.akk.validadorConexiones.dao.ReservacionDao;
 import com.akk.validadorConexiones.dao.UsuarioDao;
 import com.akk.validadorConexiones.dto.ReservacionDto;
+import com.akk.validadorConexiones.dto.UsuarioDto;
 import com.akk.validadorConexiones.jms.JmsSender;
 
 import com.akk.validarhabitacion.*;
@@ -24,8 +26,6 @@ public class ReservacionBusiness implements Business {
     
     private ReservacionDao reservacionDao;
     
-    
-
     @Override
     public void agregarReservacion(String xml) {
         
@@ -42,6 +42,8 @@ public class ReservacionBusiness implements Business {
             System.out.println("-----------------------\n\n");
             System.out.println(xml);
             System.out.println("-----------------------\n\n");
+            
+            AgendarReservacion(doc);
             
             ValidarHabitacionServiceStub stubValidarHabitacion=null;
             try {
@@ -64,12 +66,7 @@ public class ReservacionBusiness implements Business {
                 System.out.println("Otra vez no jaló :'c");
                 e.printStackTrace();
             }
-            /*UsuarioDto usuarioDto = new UsuarioDto();
-            usuarioDto.setLogin(doc.getUsuario().getLogin());
-            usuarioDto.setPassword(doc.getUsuario().getPassword());
-            usuarioDao.add(usuarioDto);
-            System.out.println(
-                    doc.xmlText() + " " + doc.getUsuario().getLogin());*/
+            //doc.xmlText() + " " + doc.getUsuario().getLogin());
             jmsSender.sendMessage("queue/C", xml);
         } catch (XmlException e) {
             // TODO Auto-generated catch block
@@ -87,9 +84,28 @@ public class ReservacionBusiness implements Business {
     /**
      * @param usuarioDao the usuarioDao to set
      */
-    public final void setReservacionDao(ReservacionDao ReservacionDao) {
+    public final void setReservacionDao(ReservacionDao reservacionDao) {
         this.reservacionDao = reservacionDao;
     }
 
-    
+    private void AgendarReservacion(RequestValidadorConexionesDocument doc) {
+        System.out.println("1");
+        ReservacionDto reservacionDto = new ReservacionDto();
+        System.out.println("2");
+        reservacionDto.setIDReservacion(null);
+        System.out.println("3");
+        reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
+        System.out.println("4");
+        reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
+        System.out.println("5");
+        reservacionDto.setIDHotel(Integer.parseInt(doc.getRequestValidadorConexiones().getIdHotel()));
+        System.out.println("6");
+        reservacionDto.InicializarReservacion();
+        System.out.println("7");
+        reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto));
+        System.out.println("ID Usuario: "+reservacionDto.getIDUsuario());
+        System.out.println("8");
+        reservacionDao.AgregarReservacion(reservacionDto);
+        System.out.println("9");
+    }
 }

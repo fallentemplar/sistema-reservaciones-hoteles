@@ -105,4 +105,10 @@ public class ReservacionDto {
         Email = email;
     }
     
+    public void InicializarReservacion(){
+        this.MONTO=0d;
+        this.Estatus="En Proceso";
+        this.IDHabitacion=0;
+    }
+    
 }
