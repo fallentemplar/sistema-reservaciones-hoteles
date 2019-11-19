@@ -14,6 +14,20 @@ public class ReservacionDto {
     private String FECHA;
     private Double MONTO;
     private String Estatus;
+    
+    public ReservacionDto() {
+        
+    }
+    
+    public ReservacionDto(int idReservacion,int idUsuario,int idHotel,String fecha, double monto, String estatus,int idHabitacion) {
+        this.IDHabitacion=IDHabitacion;
+        this.IDUsuario=IDUsuario;
+        this.IDHotel=IDHotel;
+        this.FECHA=fecha;
+        this.MONTO=monto;
+        this.Estatus=estatus;
+        this.IDHabitacion=IDHabitacion;
+    }
     /**
      * @return the iDReservacion
      */

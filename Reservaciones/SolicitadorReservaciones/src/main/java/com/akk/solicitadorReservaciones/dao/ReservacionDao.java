@@ -67,5 +67,17 @@ public class ReservacionDao {
                 (rs, rowNum) -> rs.getInt("idReservacion"));
     }
     
-    //select idReservacion from Reservaciones where idUsuario=1 ORDER BY idReservacion DESC LIMIT 1
+    public ReservacionDto ObtenerReservacion(String idReservacion) {
+        String sql = "SELECT * FROM Reservaciones";
+        return jdbcTemplate.queryForObject(sql, new Object[]{idReservacion}, (rs, rowNum) ->
+        new ReservacionDto(
+                rs.getInt("idReservacion"),
+                rs.getInt("idUsuario"),
+                rs.getInt("idHotel"),
+                rs.getString("Fecha"),
+                rs.getDouble("Monto"),
+                rs.getString("Estatus"),
+                rs.getInt("idHabitacion")
+        ));
+    }
 }

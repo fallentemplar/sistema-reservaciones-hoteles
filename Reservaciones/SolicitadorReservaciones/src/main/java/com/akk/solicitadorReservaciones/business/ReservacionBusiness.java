@@ -7,6 +7,8 @@ import org.apache.axis2.AxisFault;
 import org.apache.xmlbeans.XmlException;
 
 import com.akk.receptorValidadorConexiones.*;
+import com.akk.receptorValidadorConexiones.RequestValidadorConexionesDocument.RequestValidadorConexiones;
+import com.akk.receptorValidadorConexiones.ResponseValidadorConexionesDocument.ResponseValidadorConexiones;
 import com.akk.solicitadorReservaciones.dao.ReservacionDao;
 import com.akk.solicitadorReservaciones.dto.ReservacionDto;
 import com.akk.solicitadorReservaciones.jms.JmsSender;
@@ -14,8 +16,8 @@ import com.akk.validarhabitacion.*;
 import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument;
 import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument.RequestRealizarPagos;
 
-
 import com.akk.generarReserva.*;
+
 /**
  * Clase de negocio.
  * 
@@ -32,69 +34,46 @@ public class ReservacionBusiness implements Business {
     public void solicitarConfirmacionReservacion(String xml) {
 
         try {
-            System.out.println("[SolicitadorReservaciones] Super instancia de negocio: " + this);
+            System.out.println("[SolicitadorReservaciones] Instancia de negocio: " + this);
 
-            //RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml);
-            
-            RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.parse(xml); 
-            
-            ReservacionDto reservacionDto = new ReservacionDto();
+            RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.parse(xml);
 
-            System.out.println("-----------------------\n\n");
-            System.out.println(xml);
-            System.out.println("-----------------------\n\n");
+            System.out.println("----------[SolicitadorReservaciones]-------------\n\n");
+            System.out.println(docBanco.xmlText());
+            System.out.println("----------[SolicitadorReservaciones]-------------\n\n");
 
-            /*AgendarReservacion(reservacionDto, doc);
-            
-            reservacionDto.setIDReservacion(reservacionDao.ObtenerIDReservacion(reservacionDto));
-            
-            ValidarHabitacionServiceStub stubValidarHabitacion = null;
-            try {
-                
-                 stubValidarHabitacion = new ValidarHabitacionServiceStub(
-                         "http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
-                 
-                 ValidarHabitacionServiceStub.RequestValidar request = new
-                         ValidarHabitacionServiceStub.RequestValidar();
-                 request.setIdReservacion(reservacionDto.getIDReservacion().toString());
-                 request.setIdHotel(reservacionDto.getIDHotel().toString());
-                 request.setFechaReservacion(reservacionDto.getFECHA());
-                 
-                 ValidarHabitacionServiceStub.ResponseValidar response =
-                 stubValidarHabitacion.validarHabitacionOperation(request);
-                 
-                 System.out.println(response.getCodigoRespuesta()+" | "+response.
-                 getIdReservacion()+" | "+
-                 response.getIdHabitacion()+" | "+response.getCosto());
-                 
-                RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.newInstance();
-                RequestRealizarPagos requestBanco = docBanco.addNewRequestRealizarPagos();
+            RequestRealizarPagos responseBanco = docBanco.getRequestRealizarPagos();
+            int codigoRespuestaBanco = responseBanco.getCodigoRespuesta();
+            if (codigoRespuestaBanco == 200) {
 
-                requestBanco.setIdReservacion(reservacionDto.getIDReservacion().toString());
-                requestBanco.setEmailUsuario(reservacionDto.getEmail());
+                ReservacionDto reservacionDto = reservacionDao.ObtenerReservacion(responseBanco.getIdReservacion());
 
-                // requestBanco.setCosto(reservacionDto.getMONTO());
-                requestBanco.setCosto(66);
-                requestBanco.setCodigoRespuesta(0);
+                GenerarReservaServiceStub stubGenerarReserva = new GenerarReservaServiceStub(
+                        "http://192.168.43.35:8082/axis2/services/GenerarReservaService/");
+                GenerarReservaServiceStub.RequestGenerar requestGenerar = new GenerarReservaServiceStub.RequestGenerar();
+                requestGenerar.setIdReservacion(reservacionDto.getIDReservacion().toString());
+                requestGenerar.setEmailUsuario(reservacionDto.getEmail());
+                requestGenerar.setIdHotel(reservacionDto.getIDHotel().toString());
+                requestGenerar.setIdHabitacion(reservacionDto.getIDHabitacion().toString());
+                requestGenerar.setFechaReservacion(reservacionDto.getFECHA());
 
-                System.out.println("*****************************************");
-                System.out.println(docBanco.xmlText());
-                System.out.println("\n*****************************************");
-                jmsSender.sendMessage("queue/E", docBanco.xmlText());
-                */
-            } catch (Exception e) {
-            } /*
-               * catch (AxisFault e) { } // TODO Auto-generated catch block
-               * System.out.println("No jaló :'c"); e.printStackTrace(); } catch
-               * (RemoteException e) { System.out.println("Otra vez no jaló :'c");
-               * e.printStackTrace(); }
-               */
-            // doc.xmlText() + " " + doc.getUsuario().getLogin());
-            // jmsSender.sendMessage("queue/C", xml);
-        /*} catch (XmlException e) {
-            // TODO Auto-generated catch block
+                // Verifica si se hizo la reservación
+                GenerarReservaServiceStub.ResponseGenerar responseGenerarReservacion = stubGenerarReserva
+                        .generarReservaOperation(requestGenerar);
+                int codigoRespuestaHotel = responseGenerarReservacion.getCodigoRespuesta();
+                if (codigoRespuestaHotel == 200)
+                    ResponderEstatus(codigoRespuestaHotel, reservacionDto.getIDReservacion().toString());
+                else
+                    ResponderEstatus(codigoRespuestaHotel, "");
+            } else
+                ResponderEstatus(codigoRespuestaBanco, "");
+        } catch (RemoteException e) {
+            ResponderEstatus(501, "");
             e.printStackTrace();
-        }*/
+        } catch (XmlException e) {
+            ResponderEstatus(501, "");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -111,24 +90,24 @@ public class ReservacionBusiness implements Business {
         this.reservacionDao = reservacionDao;
     }
 
-    private void AgendarReservacion(ReservacionDto reservacionDto, RequestValidadorConexionesDocument doc) {
-        System.out.println("1");
+    /***
+     * Devuelve respuesta al usuario inicial del sistema, escribiendo en una Queue
+     * 
+     * @param codigoRespuesta   El código HTTP devuelto al usuario
+     * @param codigoReservacion Utilizado para generar la factura
+     */
+    private void ResponderEstatus(int codigoRespuesta, String codigoReservacion) {
+        ResponseValidadorConexionesDocument docValidadorConexiones = ResponseValidadorConexionesDocument.Factory
+                .newInstance();
+        ResponseValidadorConexiones responseValidador = docValidadorConexiones.addNewResponseValidadorConexiones();
 
-        System.out.println("2");
-        reservacionDto.setIDReservacion(null);
-        System.out.println("3");
-        reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
-        System.out.println("4");
-        reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
-        System.out.println("5");
-        reservacionDto.setIDHotel(Integer.parseInt(doc.getRequestValidadorConexiones().getIdHotel()));
-        System.out.println("6");
-        reservacionDto.InicializarReservacion();
-        System.out.println("7");
-        reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto));
-        System.out.println("ID Usuario: " + reservacionDto.getIDUsuario());
-        System.out.println("8");
-        reservacionDao.AgregarReservacion(reservacionDto);
-        System.out.println("9");
+        responseValidador.setCodigoRespuesta(codigoRespuesta);
+        if (codigoRespuesta == 200)
+            responseValidador.setFactura("Se ha generado la factura " + codigoReservacion);
+
+        System.out.println("****************[SolicitadorReservaciones]*************************");
+        System.out.println(responseValidador.xmlText());
+        System.out.println("****************[SolicitadorReservaciones]*************************");
+        jmsSender.sendMessage("queue/ex", responseValidador.xmlText());
     }
 }
