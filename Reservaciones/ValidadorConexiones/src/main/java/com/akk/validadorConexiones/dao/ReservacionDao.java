@@ -56,6 +56,25 @@ public class ReservacionDao {
         jdbcTemplate.execute(sql);
     }
     
+    public void ActualizarEstatusReservacion(ReservacionDto reservacionDto) {
+        jdbcTemplate.execute("UPDATE Reservacion SET Estatus = '"
+                + reservacionDto.getEstatus()+"' "
+                + "WHERE idReservacion = " 
+                + reservacionDto.getIDReservacion() + "");
+    }
+    
+    public void ActualizarReservacion(ReservacionDto reservacionDto) {
+        jdbcTemplate.execute("UPDATE Reservacion SET idUsuario = "
+                + reservacionDto.getIDUsuario() + ","
+                + reservacionDto.getIDHotel()+",'"
+                + reservacionDto.getFECHA()+"',"
+                + reservacionDto.getMONTO()+",'"
+                + reservacionDto.getEstatus()+"',"
+                + reservacionDto.getIDHabitacion()+" "
+                + "WHERE idReservacion = " 
+                + reservacionDto.getIDReservacion() + "");
+    }
+    
     public int ObtenerIDReservacion(ReservacionDto reservacionDto) {
         String sql = "select idReservacion from Reservaciones where idUsuario=? ORDER BY idReservacion DESC LIMIT 1";
         return jdbcTemplate.queryForObject(
