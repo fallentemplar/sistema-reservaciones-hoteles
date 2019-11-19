@@ -48,8 +48,10 @@ public class ReservacionBusiness implements Business {
 
                 ReservacionDto reservacionDto = reservacionDao.ObtenerReservacion(responseBanco.getIdReservacion());
 
-                GenerarReservaServiceStub stubGenerarReserva = new GenerarReservaServiceStub(
+                GenerarReservaServiceStub stubGenerarReservacionHabitacion = new GenerarReservaServiceStub(
                         "http://192.168.43.35:8082/axis2/services/GenerarReservaService/");
+
+                // Solicita confirmar la reservación en el hotel
                 GenerarReservaServiceStub.RequestGenerar requestGenerar = new GenerarReservaServiceStub.RequestGenerar();
                 requestGenerar.setIdReservacion(reservacionDto.getIDReservacion().toString());
                 requestGenerar.setEmailUsuario(reservacionDto.getEmail());
@@ -57,8 +59,8 @@ public class ReservacionBusiness implements Business {
                 requestGenerar.setIdHabitacion(reservacionDto.getIDHabitacion().toString());
                 requestGenerar.setFechaReservacion(reservacionDto.getFECHA());
 
-                // Verifica si se hizo la reservación
-                GenerarReservaServiceStub.ResponseGenerar responseGenerarReservacion = stubGenerarReserva
+                // Verifica si se hizo la reservación en el hotel
+                GenerarReservaServiceStub.ResponseGenerar responseGenerarReservacion = stubGenerarReservacionHabitacion
                         .generarReservaOperation(requestGenerar);
                 int codigoRespuestaHotel = responseGenerarReservacion.getCodigoRespuesta();
                 if (codigoRespuestaHotel == 200)
@@ -105,9 +107,9 @@ public class ReservacionBusiness implements Business {
         if (codigoRespuesta == 200)
             responseValidador.setFactura("Se ha generado la factura " + codigoReservacion);
 
-        System.out.println("****************[SolicitadorReservaciones]*************************");
+        System.out.println("****************[SolicitadorReservacionesResponse]*************************");
         System.out.println(responseValidador.xmlText());
-        System.out.println("****************[SolicitadorReservaciones]*************************");
+        System.out.println("****************[SolicitadorReservacionesResponse]*************************");
         jmsSender.sendMessage("queue/ex", responseValidador.xmlText());
     }
 }
