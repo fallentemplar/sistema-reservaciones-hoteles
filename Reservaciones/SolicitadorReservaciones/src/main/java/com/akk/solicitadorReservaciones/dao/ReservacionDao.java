@@ -67,8 +67,18 @@ public class ReservacionDao {
                 (rs, rowNum) -> rs.getInt("idReservacion"));
     }
     
+    public String ObtenerEmailUsuario(ReservacionDto reservacionDto) {
+        String sql = "select Email from Usuarios where idUsuario=?";
+        System.out.println(sql);
+        return jdbcTemplate.queryForObject(
+                sql, 
+                new Object[]{reservacionDto.getIDUsuario()}, 
+                (rs, rowNum) -> rs.getString("Email"));
+    }
+    
     public ReservacionDto ObtenerReservacion(String idReservacion) {
-        String sql = "SELECT * FROM Reservaciones";
+        String sql = "SELECT * FROM Reservaciones where idReservacion=?";
+        System.out.println(sql);
         return jdbcTemplate.queryForObject(sql, new Object[]{idReservacion}, (rs, rowNum) ->
         new ReservacionDto(
                 rs.getInt("idReservacion"),
@@ -79,5 +89,12 @@ public class ReservacionDao {
                 rs.getString("Estatus"),
                 rs.getInt("idHabitacion")
         ));
+    }
+    
+    public void ActualizarEstatusReservacion(ReservacionDto reservacionDto) {
+        jdbcTemplate.execute("UPDATE Reservaciones SET Estatus = '"
+                + reservacionDto.getEstatus()+"' "
+                + "WHERE idReservacion = " 
+                + reservacionDto.getIDReservacion() + "");
     }
 }

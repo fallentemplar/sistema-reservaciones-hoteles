@@ -57,20 +57,20 @@ public class ReservacionDao {
     }
     
     public void ActualizarEstatusReservacion(ReservacionDto reservacionDto) {
-        jdbcTemplate.execute("UPDATE Reservacion SET Estatus = '"
+        jdbcTemplate.execute("UPDATE Reservaciones SET Estatus = '"
                 + reservacionDto.getEstatus()+"' "
                 + "WHERE idReservacion = " 
                 + reservacionDto.getIDReservacion() + "");
     }
     
     public void ActualizarReservacion(ReservacionDto reservacionDto) {
-        jdbcTemplate.execute("UPDATE Reservacion SET idUsuario = "
+        jdbcTemplate.execute("UPDATE Reservaciones SET idUsuario = "
                 + reservacionDto.getIDUsuario() + ","
-                + reservacionDto.getIDHotel()+",'"
-                + reservacionDto.getFECHA()+"',"
-                + reservacionDto.getMONTO()+",'"
-                + reservacionDto.getEstatus()+"',"
-                + reservacionDto.getIDHabitacion()+" "
+                +"idHotel ="+ reservacionDto.getIDHotel()+","
+                +"Fecha ='"+ reservacionDto.getFECHA()+"',"
+                + "Monto = "+reservacionDto.getMONTO()+","
+                +"Estatus ='" +reservacionDto.getEstatus()+"',"
+                +"idHabitacion = "+ reservacionDto.getIDHabitacion()+" "
                 + "WHERE idReservacion = " 
                 + reservacionDto.getIDReservacion() + "");
     }

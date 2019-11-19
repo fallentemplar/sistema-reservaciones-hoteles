@@ -45,11 +45,12 @@ public class ReservacionBusiness implements Business {
             RequestRealizarPagos responseBanco = docBanco.getRequestRealizarPagos();
             int codigoRespuestaBanco = responseBanco.getCodigoRespuesta();
             if (codigoRespuestaBanco == 200) {
-
+                System.out.println("IDReservacion: "+responseBanco.getIdReservacion());
                 ReservacionDto reservacionDto = reservacionDao.ObtenerReservacion(responseBanco.getIdReservacion());
-
+                reservacionDto.setEmail(reservacionDao.ObtenerEmailUsuario(reservacionDto));
+                System.out.println("IDReservacionPost: "+reservacionDto.getIDReservacion());
                 GenerarReservaServiceStub stubGenerarReservacionHabitacion = new GenerarReservaServiceStub(
-                        "http://192.168.43.35:8082/axis2/services/GenerarReservaService/");
+                        "http://192.168.43.35:8080/axis2/services/GenerarReservaService");
 
                 // Solicita confirmar la reservación en el hotel
                 GenerarReservaServiceStub.RequestGenerar requestGenerar = new GenerarReservaServiceStub.RequestGenerar();
@@ -63,8 +64,12 @@ public class ReservacionBusiness implements Business {
                 GenerarReservaServiceStub.ResponseGenerar responseGenerarReservacion = stubGenerarReservacionHabitacion
                         .generarReservaOperation(requestGenerar);
                 int codigoRespuestaHotel = responseGenerarReservacion.getCodigoRespuesta();
-                if (codigoRespuestaHotel == 200)
+                if (codigoRespuestaHotel == 200) {
+                    reservacionDto.setEstatus("Confirmada");
+                    reservacionDao.ActualizarEstatusReservacion(reservacionDto);
                     ResponderEstatus(codigoRespuestaHotel, reservacionDto.getIDReservacion().toString());
+                }
+                    
                 else
                     ResponderEstatus(codigoRespuestaHotel, "");
             } else
