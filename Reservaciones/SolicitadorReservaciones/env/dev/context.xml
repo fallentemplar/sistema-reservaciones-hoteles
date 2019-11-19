@@ -35,15 +35,15 @@
 	</bean>
 
 	<bean id="consumerSpringListener"
-		class="com.akk.validadorConexiones.jms.ConsumerSpringListener">
+		class="com.akk.solicitadorReservaciones.jms.ConsumerSpringListener">
 		<property name="reservacionBusinessFactory" ref="reservacionBusinessFactory"/>
 	</bean>
 	<bean id="reservacionBusiness"
-		class="com.akk.validadorConexiones.business.ReservacionBusiness" scope="prototype">
+		class="com.akk.solicitadorReservaciones.business.ReservacionBusiness" scope="prototype">
 		<property name="jmsSender" ref="jmsSender" />
 		<property name="reservacionDao" ref="reservacionDao" />
 	</bean>
-	<bean id="jmsSender" class="com.akk.validadorConexiones.jms.JmsSender">
+	<bean id="jmsSender" class="com.akk.solicitadorReservaciones.jms.JmsSender">
 		<property name="connectionFactory"
 			ref="jndiConnectionFactory" />
 		<property name="destinationResolver"
@@ -87,7 +87,7 @@
 	<!-- bean id="usuarioDao" class="edu.itq.soa.dao.UsuarioDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean-->
-	<bean id="reservacionDao" class="com.akk.validadorConexiones.dao.ReservacionDao">
+	<bean id="reservacionDao" class="com.akk.solicitadorReservaciones.dao.ReservacionDao">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	<!-- *********************************** Transaction manager *********************************** -->
@@ -98,7 +98,7 @@
 
     <bean id="reservacionBusinessFactory" 
       class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
-      <property name="serviceLocatorInterface" value="com.akk.validadorConexiones.factory.ReservacionBusinessFactory"/>
+      <property name="serviceLocatorInterface" value="com.akk.solicitadorReservaciones.factory.ReservacionBusinessFactory"/>
     </bean>
 </beans>
 
