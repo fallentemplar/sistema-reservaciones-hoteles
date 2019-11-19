@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:RequestRealizarPagos xsi:schemaLocation="http://karla.com/ReceptorRealizarPagos pagos.xsd" xmlns:tns="http://karla.com/ReceptorRealizarPagos" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:idReservacion>1</tns:idReservacion>
+	<tns:emailUsuario>prueba1@hotmail.com</tns:emailUsuario>
+	<tns:costo>100</tns:costo>
+	<tns:codigoRespuesta>0</tns:codigoRespuesta>	
+</tns:RequestRealizarPagos>
