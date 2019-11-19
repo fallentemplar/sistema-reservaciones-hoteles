@@ -1,4 +1,4 @@
-package com.akk.validadorConexiones.jms;
+package com.akk.solicitadorReservaciones.jms;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.akk.validadorConexiones.business.ReservacionBusiness;
-import com.akk.validadorConexiones.factory.ReservacionBusinessFactory;
-import com.akk.validadorConexiones.factory.UsuarioBusinessFactory;
+import com.akk.solicitadorReservaciones.business.ReservacionBusiness;
+import com.akk.solicitadorReservaciones.factory.ReservacionBusinessFactory;
+import com.akk.solicitadorReservaciones.factory.UsuarioBusinessFactory;
 
 public class ConsumerSpringListener implements MessageListener {
     /**
      * Objeto de ejecución de negocio.
      */
-    //private UsuarioBusiness usuarioBusiness;
+    // private UsuarioBusiness usuarioBusiness;
     private ReservacionBusiness reservacionBusiness;
 
-    //private UsuarioBusinessFactory usuarioBusinessFactory;
+    // private UsuarioBusinessFactory usuarioBusinessFactory;
     private ReservacionBusinessFactory reservacionBusinessFactory;
 
     // private ApplicationContext appContext;
@@ -28,29 +28,26 @@ public class ConsumerSpringListener implements MessageListener {
     @Override
     public void onMessage(Message arg0) {
         String mensaje = "";
-        
-        System.out.println("OnMessage:" +this);
+
+        System.out.println("[SolicitadorReservaciones] OnMessage :" + this);
         try {
             TextMessage txtMsg = (TextMessage) arg0;
-            
+
             mensaje = txtMsg.getText();
-            
+
             reservacionBusiness = (ReservacionBusiness) reservacionBusinessFactory.getBusiness("reservacionBusiness");
-            
-            reservacionBusiness.agregarReservacion(mensaje);
-            System.out.println("Ya volví");
+
+            reservacionBusiness.solicitarConfirmacionReservacion(mensaje);
+
+            System.out.println("[SolicitadorReservaciones] Ya volví");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * @param usuarioBusiness the usuarioBusiness to set
+     * @param reservacionBusiness the reservacionBusiness to set
      */
-    /*public final void setUsuarioBusiness(UsuarioBusiness usuarioBusiness) {
-        this.usuarioBusiness = usuarioBusiness;
-    }*/
-    
     public final void setReservacionBusiness(ReservacionBusiness reservacionBusiness) {
         this.reservacionBusiness = reservacionBusiness;
     }
@@ -64,10 +61,12 @@ public class ConsumerSpringListener implements MessageListener {
     /**
      * @param usuarioBusinessFactory the usuarioBusinessFactory to set
      */
-    /*public final void setUsuarioBusinessFactory(UsuarioBusinessFactory usuarioBusinessFactory) {
-        this.usuarioBusinessFactory = usuarioBusinessFactory;
-    }*/
-    
+    /*
+     * public final void setUsuarioBusinessFactory(UsuarioBusinessFactory
+     * usuarioBusinessFactory) { this.usuarioBusinessFactory =
+     * usuarioBusinessFactory; }
+     */
+
     public final void setReservacionBusinessFactory(ReservacionBusinessFactory reservacionBusinessFactory) {
         this.reservacionBusinessFactory = reservacionBusinessFactory;
     }

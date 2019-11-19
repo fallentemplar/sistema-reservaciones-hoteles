@@ -29,7 +29,7 @@ public class ConsumerSpringListener implements MessageListener {
     public void onMessage(Message arg0) {
         String mensaje = "";
         
-        System.out.println("OnMessage:" +this);
+        System.out.println("[ValidadorConexiones] OnMessage:" +this);
         try {
             TextMessage txtMsg = (TextMessage) arg0;
             
@@ -38,7 +38,7 @@ public class ConsumerSpringListener implements MessageListener {
             reservacionBusiness = (ReservacionBusiness) reservacionBusinessFactory.getBusiness("reservacionBusiness");
             
             reservacionBusiness.agregarReservacion(mensaje);
-            System.out.println("Ya volví");
+            System.out.println("[ValidadorConexiones] Ya volví");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package com.akk.validadorConexiones.dto;
+package com.akk.solicitadorReservaciones.dto;
 
 /**
  * @author tlopez

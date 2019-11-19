@@ -1,4 +1,4 @@
-package com.akk.validadorConexiones.dao;
+package com.akk.solicitadorReservaciones.dao;
 
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.akk.validadorConexiones.dto.ReservacionDto;
+import com.akk.solicitadorReservaciones.dto.ReservacionDto;
 
 /**
  * @author tlopez

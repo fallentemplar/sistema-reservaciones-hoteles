@@ -1,4 +1,4 @@
-package com.akk.validadorConexiones.business;
+package com.akk.solicitadorReservaciones.business;
 
 import java.rmi.RemoteException;
 import java.sql.Time;
@@ -7,90 +7,96 @@ import org.apache.axis2.AxisFault;
 import org.apache.xmlbeans.XmlException;
 
 import com.akk.receptorValidadorConexiones.*;
-import com.akk.validadorConexiones.dao.ReservacionDao;
-import com.akk.validadorConexiones.dao.UsuarioDao;
-import com.akk.validadorConexiones.dto.ReservacionDto;
-import com.akk.validadorConexiones.dto.UsuarioDto;
-import com.akk.validadorConexiones.jms.JmsSender;
-
+import com.akk.solicitadorReservaciones.dao.ReservacionDao;
+import com.akk.solicitadorReservaciones.dto.ReservacionDto;
+import com.akk.solicitadorReservaciones.jms.JmsSender;
 import com.akk.validarhabitacion.*;
 import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument;
 import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument.RequestRealizarPagos;
+
+
+import com.akk.generarReserva.*;
 /**
  * Clase de negocio.
- * @author tlopez.
+ * 
+ * @author Alexis Aguirre.
  *
  */
 public class ReservacionBusiness implements Business {
     /** Emisor de mensajes. */
     private JmsSender jmsSender;
 
-    
     private ReservacionDao reservacionDao;
-    
+
     @Override
-    public void agregarReservacion(String xml) {
-        
+    public void solicitarConfirmacionReservacion(String xml) {
+
         try {
-            System.out.println("Super instancia de negocio: " + this);
+            System.out.println("[SolicitadorReservaciones] Super instancia de negocio: " + this);
+
+            //RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml);
             
-            RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
+            RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.parse(xml); 
+            
             ReservacionDto reservacionDto = new ReservacionDto();
-            
+
             System.out.println("-----------------------\n\n");
             System.out.println(xml);
             System.out.println("-----------------------\n\n");
+
+            /*AgendarReservacion(reservacionDto, doc);
             
-            AgendarReservacion(reservacionDto,doc);
-            System.out.println("A");
             reservacionDto.setIDReservacion(reservacionDao.ObtenerIDReservacion(reservacionDto));
-            System.out.println("B");
-            ValidarHabitacionServiceStub stubValidarHabitacion=null;
+            
+            ValidarHabitacionServiceStub stubValidarHabitacion = null;
             try {
-                /*stubValidarHabitacion = new ValidarHabitacionServiceStub("http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
                 
-                ValidarHabitacionServiceStub.RequestValidar request = new ValidarHabitacionServiceStub.RequestValidar(); 
-                request.setIdReservacion(reservacionDto.getIDReservacion().toString());
-                request.setIdHotel(reservacionDto.getIDHotel().toString());
-                request.setFechaReservacion(reservacionDto.getFECHA());
-                
-                ValidarHabitacionServiceStub.ResponseValidar response = stubValidarHabitacion.validarHabitacionOperation(request);
-                
-                System.out.println(response.getCodigoRespuesta()+" | "+response.getIdReservacion()+" | "+ response.getIdHabitacion()+" | "+response.getCosto()); 
-                */
-                RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.newInstance();  
+                 stubValidarHabitacion = new ValidarHabitacionServiceStub(
+                         "http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
+                 
+                 ValidarHabitacionServiceStub.RequestValidar request = new
+                         ValidarHabitacionServiceStub.RequestValidar();
+                 request.setIdReservacion(reservacionDto.getIDReservacion().toString());
+                 request.setIdHotel(reservacionDto.getIDHotel().toString());
+                 request.setFechaReservacion(reservacionDto.getFECHA());
+                 
+                 ValidarHabitacionServiceStub.ResponseValidar response =
+                 stubValidarHabitacion.validarHabitacionOperation(request);
+                 
+                 System.out.println(response.getCodigoRespuesta()+" | "+response.
+                 getIdReservacion()+" | "+
+                 response.getIdHabitacion()+" | "+response.getCosto());
+                 
+                RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.newInstance();
                 RequestRealizarPagos requestBanco = docBanco.addNewRequestRealizarPagos();
-                
+
                 requestBanco.setIdReservacion(reservacionDto.getIDReservacion().toString());
                 requestBanco.setEmailUsuario(reservacionDto.getEmail());
-                
-                //requestBanco.setCosto(reservacionDto.getMONTO());
+
+                // requestBanco.setCosto(reservacionDto.getMONTO());
                 requestBanco.setCosto(66);
                 requestBanco.setCodigoRespuesta(0);
-                
+
                 System.out.println("*****************************************");
                 System.out.println(docBanco.xmlText());
                 System.out.println("\n*****************************************");
-                jmsSender.sendMessage("queue/C", docBanco.xmlText());
-                
-            } catch(Exception e) {
-            }/*catch (AxisFault e) {
-            }
-                // TODO Auto-generated catch block
-                System.out.println("No jaló :'c");
-                e.printStackTrace();
-            } catch (RemoteException e) {
-                System.out.println("Otra vez no jaló :'c");
-                e.printStackTrace();
-            }*/
-            //doc.xmlText() + " " + doc.getUsuario().getLogin());
-            //jmsSender.sendMessage("queue/C", xml);
-        } catch (XmlException e) {
+                jmsSender.sendMessage("queue/E", docBanco.xmlText());
+                */
+            } catch (Exception e) {
+            } /*
+               * catch (AxisFault e) { } // TODO Auto-generated catch block
+               * System.out.println("No jaló :'c"); e.printStackTrace(); } catch
+               * (RemoteException e) { System.out.println("Otra vez no jaló :'c");
+               * e.printStackTrace(); }
+               */
+            // doc.xmlText() + " " + doc.getUsuario().getLogin());
+            // jmsSender.sendMessage("queue/C", xml);
+        /*} catch (XmlException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
     }
-    
+
     /**
      * @param jmsSender the jmsSender to set
      */
@@ -107,7 +113,7 @@ public class ReservacionBusiness implements Business {
 
     private void AgendarReservacion(ReservacionDto reservacionDto, RequestValidadorConexionesDocument doc) {
         System.out.println("1");
-        
+
         System.out.println("2");
         reservacionDto.setIDReservacion(null);
         System.out.println("3");
@@ -120,7 +126,7 @@ public class ReservacionBusiness implements Business {
         reservacionDto.InicializarReservacion();
         System.out.println("7");
         reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto));
-        System.out.println("ID Usuario: "+reservacionDto.getIDUsuario());
+        System.out.println("ID Usuario: " + reservacionDto.getIDUsuario());
         System.out.println("8");
         reservacionDao.AgregarReservacion(reservacionDto);
         System.out.println("9");

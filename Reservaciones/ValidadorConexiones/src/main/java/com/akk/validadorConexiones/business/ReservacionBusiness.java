@@ -32,19 +32,17 @@ public class ReservacionBusiness implements Business {
     public void agregarReservacion(String xml) {
         
         try {
-            System.out.println("Super instancia de negocio: " + this);
+            System.out.println("[ValidadorConexiones] Instancia de negocio: " + this);
             
             RequestValidadorConexionesDocument doc = RequestValidadorConexionesDocument.Factory.parse(xml); 
             ReservacionDto reservacionDto = new ReservacionDto();
             
-            System.out.println("-----------------------\n\n");
+            System.out.println("----------[ValidadorConexiones]-------------\n\n");
             System.out.println(xml);
-            System.out.println("-----------------------\n\n");
+            System.out.println("----------[ValidadorConexiones]-------------\n\n");
             
             AgendarReservacion(reservacionDto,doc);
-            System.out.println("A");
             reservacionDto.setIDReservacion(reservacionDao.ObtenerIDReservacion(reservacionDto));
-            System.out.println("B");
             ValidarHabitacionServiceStub stubValidarHabitacion=null;
             try {
                 /*stubValidarHabitacion = new ValidarHabitacionServiceStub("http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
@@ -68,12 +66,13 @@ public class ReservacionBusiness implements Business {
                 requestBanco.setCosto(66);
                 requestBanco.setCodigoRespuesta(0);
                 
-                System.out.println("*****************************************");
+                System.out.println("****************[ValidadorConexiones]*************************");
                 System.out.println(docBanco.xmlText());
-                System.out.println("\n*****************************************");
+                System.out.println("****************[ValidadorConexiones]*************************");
                 jmsSender.sendMessage("queue/C", docBanco.xmlText());
                 
             } catch(Exception e) {
+                e.printStackTrace();
             }/*catch (AxisFault e) {
             }
                 // TODO Auto-generated catch block
@@ -106,23 +105,12 @@ public class ReservacionBusiness implements Business {
     }
 
     private void AgendarReservacion(ReservacionDto reservacionDto, RequestValidadorConexionesDocument doc) {
-        System.out.println("1");
-        
-        System.out.println("2");
         reservacionDto.setIDReservacion(null);
-        System.out.println("3");
         reservacionDto.setEmail(doc.getRequestValidadorConexiones().getEmailUsuario());
-        System.out.println("4");
         reservacionDto.setFECHA(doc.getRequestValidadorConexiones().getFechaReservacion());
-        System.out.println("5");
         reservacionDto.setIDHotel(Integer.parseInt(doc.getRequestValidadorConexiones().getIdHotel()));
-        System.out.println("6");
         reservacionDto.InicializarReservacion();
-        System.out.println("7");
         reservacionDto.setIDUsuario(reservacionDao.ObtenerIDUsuario(reservacionDto));
-        System.out.println("ID Usuario: "+reservacionDto.getIDUsuario());
-        System.out.println("8");
         reservacionDao.AgregarReservacion(reservacionDto);
-        System.out.println("9");
     }
 }

@@ -43,7 +43,6 @@ public class ReservacionDao {
     
     public int ObtenerIDUsuario(ReservacionDto reservacionDto) {
         String sql = "SELECT idUsuario FROM Usuarios WHERE Email = ?";
-        System.out.println(sql);
         return jdbcTemplate.queryForObject(
                 sql, 
                 new Object[]{reservacionDto.getEmail()}, 
@@ -51,7 +50,6 @@ public class ReservacionDao {
     }
     
     public void AgregarReservacion(ReservacionDto reservacionDto) {
-        System.out.println("Usuario: "+reservacionDto.getIDUsuario());
         String sql = "INSERT INTO Reservaciones(idUsuario,idHotel,Fecha,Monto,Estatus,idHabitacion) VALUES("
         +reservacionDto.getIDUsuario()+","+reservacionDto.getIDHotel()+",'"+reservacionDto.getFECHA()+"',"
         +reservacionDto.getMONTO()+",'"+reservacionDto.getEstatus()+"',"+reservacionDto.getIDHabitacion()+")";
@@ -60,12 +58,9 @@ public class ReservacionDao {
     
     public int ObtenerIDReservacion(ReservacionDto reservacionDto) {
         String sql = "select idReservacion from Reservaciones where idUsuario=? ORDER BY idReservacion DESC LIMIT 1";
-        System.out.println(sql);
         return jdbcTemplate.queryForObject(
                 sql, 
                 new Object[]{reservacionDto.getIDUsuario()}, 
                 (rs, rowNum) -> rs.getInt("idReservacion"));
     }
-    
-    //select idReservacion from Reservaciones where idUsuario=1 ORDER BY idReservacion DESC LIMIT 1
 }

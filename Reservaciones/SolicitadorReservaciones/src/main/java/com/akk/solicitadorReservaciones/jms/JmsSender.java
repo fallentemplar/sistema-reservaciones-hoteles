@@ -1,4 +1,4 @@
-package com.akk.validadorConexiones.jms;
+package com.akk.solicitadorReservaciones.jms;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
