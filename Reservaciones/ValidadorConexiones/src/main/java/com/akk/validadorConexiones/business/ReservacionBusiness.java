@@ -14,6 +14,8 @@ import com.akk.validadorConexiones.dto.UsuarioDto;
 import com.akk.validadorConexiones.jms.JmsSender;
 
 import com.akk.validarhabitacion.*;
+import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument;
+import com.karla.receptorRealizarPagos.RequestRealizarPagosDocument.RequestRealizarPagos;
 /**
  * Clase de negocio.
  * @author tlopez.
@@ -45,7 +47,7 @@ public class ReservacionBusiness implements Business {
             System.out.println("B");
             ValidarHabitacionServiceStub stubValidarHabitacion=null;
             try {
-                stubValidarHabitacion = new ValidarHabitacionServiceStub("http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
+                /*stubValidarHabitacion = new ValidarHabitacionServiceStub("http://192.168.43.35:8082/axis2/services/ValidarHabitacionService/");
                 
                 ValidarHabitacionServiceStub.RequestValidar request = new ValidarHabitacionServiceStub.RequestValidar(); 
                 request.setIdReservacion(reservacionDto.getIDReservacion().toString());
@@ -55,17 +57,34 @@ public class ReservacionBusiness implements Business {
                 ValidarHabitacionServiceStub.ResponseValidar response = stubValidarHabitacion.validarHabitacionOperation(request);
                 
                 System.out.println(response.getCodigoRespuesta()+" | "+response.getIdReservacion()+" | "+ response.getIdHabitacion()+" | "+response.getCosto()); 
+                */
+                RequestRealizarPagosDocument docBanco = RequestRealizarPagosDocument.Factory.newInstance();  
+                RequestRealizarPagos requestBanco = docBanco.addNewRequestRealizarPagos();
                 
-            } catch (AxisFault e) {
+                requestBanco.setIdReservacion(reservacionDto.getIDReservacion().toString());
+                requestBanco.setEmailUsuario(reservacionDto.getEmail());
+                
+                //requestBanco.setCosto(reservacionDto.getMONTO());
+                requestBanco.setCosto(66);
+                requestBanco.setCodigoRespuesta(0);
+                
+                System.out.println("*****************************************");
+                System.out.println(docBanco.xmlText());
+                System.out.println("\n*****************************************");
+                jmsSender.sendMessage("queue/C", docBanco.xmlText());
+                
+            } catch(Exception e) {
+            }/*catch (AxisFault e) {
+            }
                 // TODO Auto-generated catch block
                 System.out.println("No jaló :'c");
                 e.printStackTrace();
             } catch (RemoteException e) {
                 System.out.println("Otra vez no jaló :'c");
                 e.printStackTrace();
-            }
+            }*/
             //doc.xmlText() + " " + doc.getUsuario().getLogin());
-            jmsSender.sendMessage("queue/C", xml);
+            //jmsSender.sendMessage("queue/C", xml);
         } catch (XmlException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
