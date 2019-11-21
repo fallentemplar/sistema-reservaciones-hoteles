@@ -9,7 +9,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.akk.validadorConexiones.dto.UsuarioDto;
+import com.akk.validadorConexiones.dto.ReservacionDto;
 
 /**
  * @author tlopez
@@ -41,30 +41,33 @@ public class UsuarioDao {
      * Agrega un usuario en la BD.
      * @param usuarioDto Usuario a agregar.
      */
+    /*
     public void add(UsuarioDto usuarioDto) {
         jdbcTemplate.execute("INSERT INTO Usuario(login, password) VALUES('"
                 + usuarioDto.getLogin() + "', '" + usuarioDto.getPassword()
                 + "')");
-    }
+    }*/
     
     /**
      * Actualiza un usuario en la BD.
      * @param usuarioDto Usuario a agregar.
      */
+    /*
     public void upd(UsuarioDto usuarioDto) {
         jdbcTemplate.execute("UPDATE Usuario SET password = '"
                 + usuarioDto.getPassword() + "' WHERE login = '" 
                 + usuarioDto.getLogin() + "'");
-    }
+    }*/
 
     /**
      * Borra un usuario en la BD.
      * @param usuarioDto Usuario a agregar.
      */
+    /*
     public void del(UsuarioDto usuarioDto) {
         jdbcTemplate.execute("DELETE FROM Usuario WHERE login = '" 
                 + usuarioDto.getLogin() + "'");
-    }
+    }*/
 
     /**
      * Consulta usuarios que coincidan con el criterio.
@@ -93,13 +96,14 @@ public class UsuarioDao {
      * Consulta usuarios que coincidan con el criterio.
      * @param usuarioDto Usuario a agregar.
      */
+    /*
     public List<UsuarioDto> queryRowMapper(UsuarioDto usuarioDto) {
         List<UsuarioDto> resultList = jdbcTemplate.query(
                 "SELECT id, login, password FROM Usuario WHERE login = '"
                         + usuarioDto.getLogin() + "'", 
                         new BeanPropertyRowMapper(UsuarioDto.class));
         return resultList;
-    }
+    }*/
 }
 
 

@@ -14,7 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema Hotel
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Hotel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+CREATE SCHEMA IF NOT EXISTS `Hotel` DEFAULT CHARACTER SET utf8;
 USE `Hotel` ;
 
 -- -----------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Hotel`.`Habitaciones` (
   `idHotel` INT NOT NULL,
   `CostoHabitacion` DECIMAL(4,2) UNSIGNED NOT NULL,
   PRIMARY KEY (`idHabitacion`),
-  INDEX `fk_Habitaciones_Hoteles_idx` (`idHotel` ASC) VISIBLE,
+  INDEX `fk_Habitaciones_Hoteles_idx` (`idHotel` ASC),
   CONSTRAINT `fk_Habitaciones_Hoteles`
     FOREIGN KEY (`idHotel`)
     REFERENCES `Hotel`.`Hoteles` (`idHotel`)
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `Hotel`.`Reservaciones` (
   `EmailUsuario` VARCHAR(50) NOT NULL,
   `FechaReservacion` DATE NOT NULL,
   PRIMARY KEY (`idReservacion`),
-  INDEX `fk_Reservaciones_Habitaciones_idx` (`idHabitacion` ASC) VISIBLE,
+  INDEX `fk_Reservaciones_Habitaciones_idx` (`idHabitacion` ASC),
   CONSTRAINT `fk_Reservaciones_Habitaciones`
     FOREIGN KEY (`idHabitacion`)
     REFERENCES `Hotel`.`Habitaciones` (`idHabitacion`)
